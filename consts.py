@@ -85,7 +85,9 @@ BLACK_DIAMOND = [
     'method',
     'method s',
     'aspect',
-    'aspect pro'
+    'aspect pro',
+    'zone',
+    'focus'
 ]
 
 BOREAL = [

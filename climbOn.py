@@ -101,8 +101,6 @@ def scrapeCurrPage(soup, SITE, retailer):
 if __name__ == "__main__":
     res = scrapeClimbOn()
     res.saveToSheets()
-    # res.printList()
-    # print(res)
-    # retailer = Retailer("MEC")
+
 
 
