@@ -3,6 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 
+from Product import Retailer
+from Product import Product
+
+
+
 def scrapeClimbOn():
 
     """
@@ -12,7 +17,7 @@ def scrapeClimbOn():
     :returnType: List
     """
 
-    res = []
+    retailer = Retailer(retailer="Climb On Squamish", country="Canada", currency="CAD")
 
     service = Service()
     options = webdriver.ChromeOptions()
@@ -28,10 +33,11 @@ def scrapeClimbOn():
         url = f'{LINK}?page={currPage}'
         driver.get(url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
-        res.extend(scrapeCurrPage(soup, SITE))
+        products = scrapeCurrPage(soup, SITE, retailer)
+        retailer.addProducts(products)
         currPage += 1
 
-    return res
+    return retailer
 
 
 def getLastPage(driver, LINK):
@@ -52,7 +58,7 @@ def getLastPage(driver, LINK):
     pageNums = pageDiv.find_all("span", {"class":"page"})
     return int(pageNums[-1].text)
 
-def scrapeCurrPage(soup, SITE):
+def scrapeCurrPage(soup, SITE, retailer):
     """
     Get product details for all discounted products on a single page
     
@@ -71,23 +77,32 @@ def scrapeCurrPage(soup, SITE):
         if isDiscounted is None:
             continue
 
-        link = SITE + listing.find("a", {"class": "grid-product__link"})["href"]
-        product = listing.find("div", {"class": "grid-product__title"}).text
-        brand = listing.find("div", {"class": "grid-product__vendor"}).text
-        priceDIV = listing.find("div", {"class": "grid-product__price"})
-        origPrice = float(priceDIV.find("span",{"class":"grid-product__price--original"}).text.replace("$","").replace(" CAD", ""))
-        salePrice = float(priceDIV.find_all("span",{"class":"visually-hidden"})[-1].next_sibling.replace("$","").replace("\n","").replace("from ",""))
-        discountPct = round((origPrice - salePrice) / origPrice * 100)
+        product = Product()
 
-        item = {
-            "link": link,
-            "product": product,
-            "brand": brand,
-            "origPrice": origPrice,
-            "salePrice":salePrice,
-            "discountPct":discountPct
-        }
-        products.append(item)
+        product.web_url = SITE + listing.find("a", {"class": "grid-product__link"})["href"]
+        product.scraped_product_name = listing.find("div", {"class": "grid-product__title"}).text
+        product.scraped_brand = listing.find("div", {"class": "grid-product__vendor"}).text
+
+        priceDIV = listing.find("div", {"class": "grid-product__price"})
+
+        product.og_price = float(priceDIV.find("span",{"class":"grid-product__price--original"}).text.replace("$","").replace(" CAD", ""))
+        product.sale_price = float(priceDIV.find_all("span",{"class":"visually-hidden"})[-1].next_sibling.replace("$","").replace("\n","").replace("from ",""))
+        product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+        product.getGender()
+        product.getMatchedBrand()
+        product.getMatchedProduct()
+        product.generateID(retailer)
+
+        products.append(product)
     return products
+
+
+if __name__ == "__main__":
+    res = scrapeClimbOn()
+    res.saveToSheets()
+    # res.printList()
+    # print(res)
+    # retailer = Retailer("MEC")
 
 
