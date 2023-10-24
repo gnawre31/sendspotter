@@ -164,6 +164,7 @@ FIVE_TEN = [
     'quantum vcs',
     'asym',
     'anasazi',
+    'grandstone',
 ]
 
 MAD_ROCK = [
