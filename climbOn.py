@@ -1,10 +1,10 @@
-
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
+import requests
 
 from Product import Retailer
 from Product import Product
+
+
 
 
 
@@ -19,20 +19,18 @@ def scrapeClimbOn():
 
     retailer = Retailer(retailer="Climb On Squamish", country="Canada", currency="CAD")
 
-    service = Service()
-    options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(service=service, options=options)
     LINK = "https://climbonequipment.com/collections/climbing-shoes"
     SITE = "https://climbonequipment.com"
 
-
     currPage = 1
-    lastPage = getLastPage(driver, LINK)
+    lastPage = getLastPage(LINK)
+
 
     while currPage <= lastPage:
+        
         url = f'{LINK}?page={currPage}'
-        driver.get(url)
-        soup = BeautifulSoup(driver.page_source, "html.parser")
+        response = requests.get(url) 
+        soup = BeautifulSoup(response.text, "html.parser")
         products = scrapeCurrPage(soup, SITE, retailer)
         retailer.addProducts(products)
         currPage += 1
@@ -40,7 +38,7 @@ def scrapeClimbOn():
     return retailer
 
 
-def getLastPage(driver, LINK):
+def getLastPage(LINK):
     """
     Get last page # 
 
@@ -52,8 +50,10 @@ def getLastPage(driver, LINK):
     :returnType: int
     """
 
-    driver.get(LINK)
-    soup = BeautifulSoup(driver.page_source, "html.parser")
+    # driver.get(LINK)
+    response = requests.get(LINK) 
+    # print(response)
+    soup = BeautifulSoup(response.text, "html.parser")
     pageDiv = soup.find("div", {"class": "pagination"})
     pageNums = pageDiv.find_all("span", {"class":"page"})
     return int(pageNums[-1].text)
@@ -96,10 +96,12 @@ def scrapeCurrPage(soup, SITE, retailer):
 
         products.append(product)
     return products
+    
 
 
 if __name__ == "__main__":
     res = scrapeClimbOn()
+    # res.printList()
     res.saveToSheets()
 
 

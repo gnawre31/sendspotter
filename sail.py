@@ -20,6 +20,7 @@ def scrapeSail():
 
     service = Service()
     options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
     driver = webdriver.Chrome(service=service, options=options)
     LINK = "https://www.sail.ca/en/outdoor-gear/climbing/climbing-shoes#/filter:ss_special_price:Yes"
     driver.get(LINK)
