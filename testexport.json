@@ -1,0 +1,706 @@
+{
+  "data": [
+    {
+      "brand": "black diamond",
+      "id": "705865216adc6e9798addade3b19d07f4588e907",
+      "product_name": "momentum",
+      "gender": "m",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 99.95,
+          "sale_price": 49.94,
+          "discount_pct": 50,
+          "web_url": "https://www.mec.ca/en/product/5053-096/momentum-rock-shoes?colour=Ash#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/205276_source_1698485926.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "black diamond",
+      "id": "ac8beb7b2dc7aaf9e55c78f6c59109a53954558d",
+      "product_name": "zone",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 169.99,
+          "sale_price": 84.99,
+          "discount_pct": 50,
+          "web_url": "https://www.sail.ca/en/blackdiam-zone-unisex-climbing-shoes-879558",
+          "img_url": "https://www.sail.ca/media/catalog/product/b/l/blackca-570114_aluminum__S19__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "black diamond",
+      "id": "cc4260463584d81ef0c91839b0c21506562ca2d7",
+      "product_name": "momentum",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 99.95,
+          "sale_price": 49.94,
+          "discount_pct": 50,
+          "web_url": "https://www.mec.ca/en/product/5053-097/momentum-rock-shoes?colour=Merlot#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/203618_source_1698485913.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "black diamond",
+      "id": "df7b5e7e4bc02c944107728992d0adde1bb4de82",
+      "product_name": "momentum lace",
+      "gender": "m",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 64.95,
+          "sale_price": 29.94,
+          "discount_pct": 54,
+          "web_url": "https://www.mec.ca/en/product/5063-484/momentum-rock-shoes?colour=Macaw#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/437451_source_1698398315.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "five ten",
+      "id": "6724e092dc8c833cd6c1638b3a30552f50c03766",
+      "product_name": "grandstone",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 229.95,
+          "sale_price": 172.46,
+          "discount_pct": 25,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/five-ten-grandstone",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/five-ten-grandstone-shoes-beige-bc0866-01-standard.jpg?v=1659064750&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "five ten",
+      "id": "6b4f8a2e43a4b00937f8df66360145d1fb36540d",
+      "product_name": "niad lace",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 199.95,
+          "sale_price": 119.97,
+          "discount_pct": 40,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/five-ten-niad-lace",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/five-ten-niad-lace-climbing-shoes-black-fw2851-01.jpg?v=1659060357&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "five ten",
+      "id": "7218b211a22439dab7d5cfddf93ce4bea8a16964",
+      "product_name": "niad lace",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 199.95,
+          "sale_price": 119.97,
+          "discount_pct": 40,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/five-ten-ws-niad-lace",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/Five_Ten_NIAD_Lace_Climbing_Shoes_Black_FW2874_01_standard.jpg?v=1666890714&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "five ten",
+      "id": "e04f495477cb8f7f5c1ff1af5ab88c9fcf263c74",
+      "product_name": "rogue vcs",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "VPO",
+          "retailer_id": "22cf288d8bf1c843500ae4f754d9c27fb574f6ce",
+          "og_price": 119.95,
+          "sale_price": 84.96,
+          "discount_pct": 29,
+          "web_url": "https://vpo.ca/product/278151/rogue-vcs-purple-charcoal-womens",
+          "img_url": "https://vpo.ca/images/product/medium/278151.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "8de23bbefc0b1067eecf87502f0280f1142ca268",
+      "product_name": "mythos",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "VPO",
+          "retailer_id": "22cf288d8bf1c843500ae4f754d9c27fb574f6ce",
+          "og_price": 187.0,
+          "sale_price": 139.99,
+          "discount_pct": 25,
+          "web_url": "https://vpo.ca/product/150775/mythos-womens",
+          "img_url": "https://vpo.ca/images/product/medium/150775.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "8e73a347854fb5a27fb140886c2082000335d18c",
+      "product_name": "miura vs",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 239.95,
+          "sale_price": 143.97,
+          "discount_pct": 40,
+          "web_url": "https://www.sail.ca/en/la-sportiva-miura-vs-women-s-climbing-shoes-1123723",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/p/sportiva-865_blue__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "8ec8617a9c5dc9d2c81173a374262006b5776ff1",
+      "product_name": "miura vs",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 239.95,
+          "sale_price": 143.97,
+          "discount_pct": 40,
+          "web_url": "https://www.sail.ca/en/la-sportiva-miura-vs-unisex-climbing-shoes-1123721",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/p/sportiva-555_yellow__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "0b0371fceff0f0f8dcacb45ce0e4b367361ae6e7",
+      "product_name": "haywire",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 174.0,
+          "sale_price": 104.4,
+          "discount_pct": 40,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/haywire",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/haywire1_large.jpg?v=1539984763"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "1298fb4b76ccb253d8051cb3195b7061cd5a18a4",
+      "product_name": "redline lace",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 169.0,
+          "sale_price": 101.4,
+          "discount_pct": 40,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/redline",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Redline_Outside_large.jpg?v=1537378723"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "2ec4e949d814db95706698069c51c8c1b9f73c02",
+      "product_name": "rover",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 136.0,
+          "sale_price": 95.2,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/weaver",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/weaver1_large.jpg?v=1539984985"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "48067e96556c90c14607863fa5c62594fa1d3e96",
+      "product_name": "pulse negative",
+      "gender": "m",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 105.0,
+          "sale_price": 73.5,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/pulse-negative",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Pulse_Negative_large.jpg?v=1454469651"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "62319950ce0804991365cad873845a1a0eef3558",
+      "product_name": "agama",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 105.0,
+          "sale_price": 78.75,
+          "discount_pct": 25,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/agama-orange-1",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Agama_orange_large.jpg?v=1509064773"
+        },
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 105.0,
+          "sale_price": 78.75,
+          "discount_pct": 25,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/agama-orange",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Agama_Yellow2_large.jpg?v=1509064819"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "68939f34ed82595fe19479348268cbd37592b96f",
+      "product_name": "lotus",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 146.0,
+          "sale_price": 102.2,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/lotus",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Lotus_large.jpg?v=1454466532"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "72be0904726fb83bc68d6782004c70f3663afceb",
+      "product_name": "drone hv black",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 178.0,
+          "sale_price": 142.4,
+          "discount_pct": 20,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/drone-hv-black-high-volume",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Drone_HV_BLACK_large.jpg?v=1602882486"
+        },
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 178.0,
+          "sale_price": 142.4,
+          "discount_pct": 20,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/drone-hv-high-volume",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Drone_HV_1_large.jpg?v=1496707667"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "8aee052038cf9ded4a42194cafe2123a33c808dd",
+      "product_name": "pulse positive",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 105.0,
+          "sale_price": 73.5,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/pulse-postitive",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Pulse_Positive_large.jpg?v=1454469627"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "97176269a388b7f3801a387aaace2402c09d87ae",
+      "product_name": "remora",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 135.0,
+          "sale_price": 94.5,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/remora",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Remora.1_large.jpg?v=1464900479"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "ca215c3711ea72e1d91e17d84f3e8137e2fd00b1",
+      "product_name": "flash 2.0",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 100.0,
+          "sale_price": 75.0,
+          "discount_pct": 25,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/yellow-flash-2-0",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Flash20_Yellow_large.jpg?v=1454469975"
+        },
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 100.0,
+          "sale_price": 75.0,
+          "discount_pct": 25,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/orange-flash-2-0",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Flash20_61374d2c-c28e-45cb-a878-91fb56fd6d32_large.jpg?v=1454469800"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "cc24c30ed2d6f6aa4beda221fd6c8c24048b6853",
+      "product_name": "drone lv black",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 178.0,
+          "sale_price": 142.4,
+          "discount_pct": 20,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/drone-lv-black-low-volume",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/blackdrone01_large.jpg?v=1602882903"
+        },
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 178.0,
+          "sale_price": 142.4,
+          "discount_pct": 20,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/drone-lv-low-volume",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Drone_LV_large.jpg?v=1496707241"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "d34616f05cf0a73320994345dcadb5ee292d7ce9",
+      "product_name": "drifter",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 100.0,
+          "sale_price": 75.0,
+          "discount_pct": 25,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/drifter",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Drifter._Red_large.jpg?v=1454471169"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "d474c28efff02a3fb180df22c301d9503a2eafc4",
+      "product_name": "lyra",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 125.0,
+          "sale_price": 87.5,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/lyra",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/Lyra_large.jpg?v=1454468893"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "d54ea18d1ac3502ce2e340e6ab7c5416e236cb5a",
+      "product_name": "lotus",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 146.0,
+          "sale_price": 73.0,
+          "discount_pct": 50,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/mad-rock-lotus",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/lotus1_1512x_2ddc5e85-b96d-4407-b3ce-f54c4fdf0b17.jpg?v=1673908658&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "d9152fb0a896dcbbd46be8a1f21ea8bacdbce7bb",
+      "product_name": "m5",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 125.0,
+          "sale_price": 87.5,
+          "discount_pct": 30,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/m5",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/M5_large.jpg?v=1454470071"
+        }
+      ]
+    },
+    {
+      "brand": "mad rock",
+      "id": "f312e36b470ad679cccbc8ea0e5dd31b48ab7e93",
+      "product_name": "demon 2.0",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Mad Rock Canada",
+          "retailer_id": "5107c9c2727d48218e3019eeb8d0e875da80eb9f",
+          "og_price": 135.0,
+          "sale_price": 81.0,
+          "discount_pct": 40,
+          "web_url": "https://www.madrock.ca/collections/rock-shoes/products/demon-1",
+          "img_url": "https://www.madrock.ca/cdn/shop/products/demon2.0_large.jpg?v=1482957516"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "1aa6d1bef4f7b8462665e349b75260237a072307",
+      "product_name": "origin",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 134.99,
+          "sale_price": 94.49,
+          "discount_pct": 30,
+          "web_url": "https://www.sail.ca/en/scarpa-origin-women-s-climbing-shoes-973380",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/c/scarpacn-70062-002_maldive-black__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "2e4bb5d2927e60f0a87dab198bb3b7aa0735f558",
+      "product_name": "vapor v",
+      "gender": "m",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 209.99,
+          "sale_price": 146.99,
+          "discount_pct": 30,
+          "web_url": "https://www.sail.ca/en/scarpa-vapor-v-men-s-climbing-shoes-823452",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/c/scarpacn-70040-001_yellow__S19__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "52edc98c149c587db8bd6c3f87b1ae1c552534ce",
+      "product_name": "quantix sf",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 208.95,
+          "sale_price": 124.94,
+          "discount_pct": 40,
+          "web_url": "https://www.mec.ca/en/product/6020-877/quantix-sf-rock-shoes?colour=Black/Aqua#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/420722_source_1676110432.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "9c04089a641e866383ebb2494158dffa3b7e693b",
+      "product_name": "mago",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 248.95,
+          "sale_price": 149.94,
+          "discount_pct": 40,
+          "web_url": "https://www.mec.ca/en/product/6016-846/mago-rock-shoes?colour=Black#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/392615_source_1697571989.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "cd12eb5567785065b4032bb67d2395dc4bf530e8",
+      "product_name": "instinct vs",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 228.99,
+          "sale_price": 160.29,
+          "discount_pct": 30,
+          "web_url": "https://www.sail.ca/en/scarpa-instinct-vs-rock-climbing-unisex-shoes-657025",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/c/scarpacn-70013-000_black-orange.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "ea6f7ec2a9a884e826cc434284d49405aef168cb",
+      "product_name": "force v",
+      "gender": "f",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "42f7016ffb95e92b4b92547d6fa31fca610f1914",
+          "og_price": 188.99,
+          "sale_price": 132.29,
+          "discount_pct": 30,
+          "web_url": "https://www.sail.ca/en/scarpa-force-v-women-s-climbing-shoes-657027",
+          "img_url": "https://www.sail.ca/media/catalog/product/s/c/scarpacn-70018-002_icefall__01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "f0aca38e440f0435073ee5484578c87d93df7c36",
+      "product_name": "quantix sf",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "f849ab3808c642a217997ce4b44c995296f7d447",
+          "og_price": 208.95,
+          "sale_price": 124.94,
+          "discount_pct": 40,
+          "web_url": "https://www.mec.ca/en/product/6016-845/quantix-sf-rock-shoes?colour=Bright+Orange#reviews",
+          "img_url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/images/stencil/300x300/attribute_rule_images/394198_source_1697574061.jpg"
+        }
+      ]
+    },
+    {
+      "brand": "unparallel",
+      "id": "201c98dd7f8e270b5125b9a1d5a0e04063ae98dd",
+      "product_name": "tn pro",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 214.95,
+          "sale_price": 167.96,
+          "discount_pct": 22,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/unparallel-tn-pro",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2801911034-1080x1080.png?v=1659060976&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "unparallel",
+      "id": "d360c6b462e0dfa3e933a961de25dac9a530bbdb",
+      "product_name": "regulus lv",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "Climb On Squamish",
+          "retailer_id": "4f87a94344506ffe568e1cd155b08840a9e67f3e",
+          "og_price": 194.95,
+          "sale_price": 136.47,
+          "discount_pct": 30,
+          "web_url": "https://climbonequipment.com/collections/climbing-shoes/products/unparallel-regulus-lv",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "unparallel",
+      "id": "ee3612475733fb62d11b4f2cc59c0ba1eb16bac5",
+      "product_name": "up rise zero vcs lv",
+      "gender": "u",
+      "date": "2023-11-06",
+      "retailers": [
+        {
+          "retailer": "VPO",
+          "retailer_id": "22cf288d8bf1c843500ae4f754d9c27fb574f6ce",
+          "og_price": 189.0,
+          "sale_price": 113.4,
+          "discount_pct": 40,
+          "web_url": "https://vpo.ca/product/324888/up-rise-zero-lv",
+          "img_url": "https://vpo.ca/images/product/medium/324888.jpg"
+        }
+      ]
+    }
+  ]
+}

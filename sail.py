@@ -20,6 +20,7 @@ def scrapeSail():
 
     service = Service()
     options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
     driver = webdriver.Chrome(service=service, options=options)
     LINK = "https://www.sail.ca/en/outdoor-gear/climbing/climbing-shoes#/filter:ss_special_price:Yes"
     driver.get(LINK)
@@ -63,6 +64,9 @@ def scrapeCurrPage(soup, retailer):
         product.og_price = float(priceDIV.find_all("span",{"class":"price-container"})[1].text.replace("$",""))
         product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
 
+        imgDiv = listing.find("span",{"class":"product-image-wrapper"})
+        product.img_url = imgDiv.find("img")['src']
+
 
         product.getGender()
         product.getMatchedBrand()
@@ -74,6 +78,7 @@ def scrapeCurrPage(soup, retailer):
 
 if __name__=="__main__":
     res = scrapeSail()
-    res.saveToSheets()
+    res.printList()
+    # res.saveToSheets()
 
     # print(res)

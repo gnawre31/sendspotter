@@ -164,6 +164,7 @@ FIVE_TEN = [
     'quantum vcs',
     'asym',
     'anasazi',
+    'grandstone',
 ]
 
 MAD_ROCK = [
@@ -181,6 +182,7 @@ MAD_ROCK = [
     'haywire',
     'lotus',
     'redline lace',
+    'redline strap'
     'weaver',
     'remora',
     'remora lv',

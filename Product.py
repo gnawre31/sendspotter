@@ -61,6 +61,7 @@ class Product():
         self.og_price = None
         self.sale_price = None
         self.discount_pct = None
+        self.img_url = None
 
     def validate(self):
         if (
@@ -74,7 +75,8 @@ class Product():
             self.gender is None or 
             self.og_price is None or 
             self.sale_price is None or 
-            self.discount_pct is None
+            self.discount_pct is None or 
+            self.img_url is None
         ):
             return False
         else:
@@ -104,9 +106,9 @@ class Product():
 
             elif any(word in self.formatted_product_name for word in maleNouns):
                 self.gender = 'm'
-                self.formatted_product_name = self.formatted_product_name.replace("men\'s","")
-                self.formatted_product_name = self.formatted_product_name.replace("mens","")
-                self.formatted_product_name = self.formatted_product_name.replace("men","")
+                self.formatted_product_name = self.formatted_product_name.replace(" men\'s","")
+                self.formatted_product_name = self.formatted_product_name.replace(" mens","")
+                self.formatted_product_name = self.formatted_product_name.replace(" men","")
             
             else:
                 self.gender = 'u'
@@ -169,6 +171,7 @@ class Product():
             print("sale_price: \t".expandtabs(30), self.sale_price)
             print("og_price: \t".expandtabs(30), self.og_price)
             print("discount_pct: \t".expandtabs(30), self.discount_pct)
+            print("img_url: \t".expandtabs(30), self.img_url)
             print("--------------------------------------------")
 
             

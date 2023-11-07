@@ -20,6 +20,7 @@ def scrapeAltitude():
 
     service = Service()
     options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
     driver = webdriver.Chrome(service=service, options=options)
     LINK = "https://www.altitude-sports.com/collections/gear-climbing-climbing-shoes#?filter.on_sale=Yes"
     SITE = "https://www.altitude-sports.com"
@@ -70,6 +71,6 @@ def scrapeCurrPage(soup, SITE, retailer):
 
 if __name__=="__main__":
     res = scrapeAltitude()
-    res.saveToSheets()
+    # res.saveToSheets()
 
     # print(res)
