@@ -342,8 +342,6 @@ class SheetsAPI():
         self.ID_RANGE = os.getenv("ID_RANGE")
         self.sheets = service.spreadsheets()
 
-        
-
     def getAllDataByRange(self, range):
         data = None
         try:
@@ -399,7 +397,8 @@ class SheetsAPI():
                 product.gender,	
                 product.og_price,	
                 product.sale_price,	
-                product.discount_pct
+                product.discount_pct,
+                product.img_url
             ]
             values.append(data)
         body = {'values':values}
@@ -410,32 +409,57 @@ class SheetsAPI():
         self.sheets.values().append(body=body, spreadsheetId=self.SHEET_ID, range=self.ALL_RANGE,valueInputOption=value_input_option).execute()
 
 def handler(event=None, context=None):
-    options = webdriver.ChromeOptions()
-    service = webdriver.ChromeService("/opt/chromedriver")
+    try:
+        options = webdriver.ChromeOptions()
+        service = webdriver.ChromeService("/opt/chromedriver")
 
-    options.binary_location = '/opt/chrome/chrome'
-    options.add_argument("--headless=new")
-    options.add_argument('--no-sandbox')
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1280x1696")
-    options.add_argument("--single-process")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-dev-tools")
-    options.add_argument("--no-zygote")
-    options.add_argument(f"--user-data-dir={mkdtemp()}")
-    options.add_argument(f"--data-path={mkdtemp()}")
-    options.add_argument(f"--disk-cache-dir={mkdtemp()}")
-    options.add_argument("--remote-debugging-port=9222")
+        options.binary_location = '/opt/chrome/chrome'
+        options.add_argument("--headless=new")
+        options.add_argument('--no-sandbox')
+        options.add_argument("--disable-gpu")
+        options.add_argument("--window-size=1280x1696")
+        options.add_argument("--single-process")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-dev-tools")
+        options.add_argument("--no-zygote")
+        options.add_argument(f"--user-data-dir={mkdtemp()}")
+        options.add_argument(f"--data-path={mkdtemp()}")
+        options.add_argument(f"--disk-cache-dir={mkdtemp()}")
+        options.add_argument("--remote-debugging-port=9222")
 
-    chrome = webdriver.Chrome(options=options, service=service)
+        chrome = webdriver.Chrome(options=options, service=service)
 
-    sail = scrapeSail(chrome)
-    sail.saveToSheets()
+        try:
+            sail = scrapeSail(chrome)
+            sail.saveToSheets()
+        except:
+            print("500 - failed to scrape Sail")
 
-    altitude = scrapeAltitude(chrome)
-    altitude.saveToSheets()
+        # try:
+            # altitude = scrapeAltitude(chrome)
+            # altitude.saveToSheets()
+        # except:
+        #     print("500 - failed to scrape altitude")
 
-    return "200"
+        try:
+            vpo = scrapeVPO(chrome)
+            vpo.printList()
+            vpo.saveToSheets()
+        except:
+            print("500 - failed to scrape VPO")
+
+        try:
+            mec = scrapeMEC(chrome)
+            mec.printList()
+            mec.saveToSheets()
+        except:
+            print("500 - failed to scrape MEC")   
+
+        return "200"
+    except:
+        return "500 failed" 
+
+    
 
 
 class Retailer():
@@ -506,8 +530,6 @@ class Product():
         else:
             return True
     
-
-
     def getGender(self):
         """
         Extracts gender details from scraped product name and set the gender attribute
@@ -595,7 +617,18 @@ class Product():
             print("sale_price: \t".expandtabs(30), self.sale_price)
             print("og_price: \t".expandtabs(30), self.og_price)
             print("discount_pct: \t".expandtabs(30), self.discount_pct)
+            print("img_url: \t".expandtabs(30), self.img_url)
             print("--------------------------------------------")
+
+def getBrandLenFromStr(product_title):
+    product_title = product_title.lower()
+    matched = ""
+    for b in BRANDS:
+        if b in product_title:
+            matched = b
+            break
+
+    return len(matched)
 
 def scrapeSail(chrome):
 
@@ -634,6 +667,9 @@ def scrapeSail(chrome):
         product.sale_price = float(priceDIV.find_all("span",{"class":"price-container"})[0].text.replace("$",""))
         product.og_price = float(priceDIV.find_all("span",{"class":"price-container"})[1].text.replace("$",""))
         product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+
+        imgDiv = listing.find("span",{"class":"product-image-wrapper"})
+        product.img_url = imgDiv.find("img")['src']
 
 
         product.getGender()
@@ -683,6 +719,116 @@ def scrapeAltitude(chrome):
         product.generateID(retailer)
 
         products.append(product)
+    retailer.addProducts(products)
+    return retailer
+
+def scrapeVPO(chrome):
+
+    """
+    Crawls through all pages, extracting details for products on sale 
+
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    retailer = Retailer(retailer="VPO", country="Canada", currency="CAD")
+    LINK = "https://vpo.ca/category/181/shoes"
+    SITE = "https://vpo.ca"
+
+    currPage = 1
+    lastPage = 1
+
+    
+
+    while currPage <= lastPage:
+        url = f'{LINK}?pagenum={currPage}'
+        chrome.get(url)
+        time.sleep(5)
+        soup = BeautifulSoup(chrome.page_source, "html.parser")
+
+        if currPage == 1:
+            pages = soup.find_all("li",{"class":"ss-page"})
+            lastPage = len(pages)-1
+        
+        products = []
+
+        listings = soup.find_all("div", {"class": "productBox"})
+
+        for listing in listings:
+            isDiscounted = listing.find("span", {"class": "ss-badge-main-text"})
+            if isDiscounted is None:
+                continue
+            elif "New" in isDiscounted.text:
+                continue
+
+
+            product = Product()
+
+            product.web_url =  SITE + listing.find("a", {"class": "productLinks"})['href']
+            priceDIV = listing.find_all("span",{"class":"ss-sale-price"})
+
+            product.scraped_brand = listing.find("h5", {"class": "brand"}).text
+            product.scraped_product_name = listing.find("div", {"class": "productTitle"}).text
+            product.sale_price = float(priceDIV[0].text.replace("$",""))
+            product.og_price = float(priceDIV[-1].text.replace("$",""))
+            product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+
+            imgDiv = listing.find("div",{"class":"mediumImg"})
+            product.img_url = "https:" + imgDiv.find("img")['src']
+
+
+            product.getGender()
+            product.getMatchedBrand()
+            product.getMatchedProduct()
+            product.generateID(retailer)
+
+            products.append(product)
+        retailer.addProducts(products)
+        currPage+= 1
+
+    return retailer
+
+def scrapeMEC(chrome):
+    retailer = Retailer(retailer="MEC", country="Canada", currency="CAD")
+
+    LINK = "https://www.mec.ca/en/products/climbing/climbing-footwear/rock-climbing-shoes/c/1190?filters%5Bcustom_fields.badge%5D%5B0%5D=clearance"
+    SITE = "https://www.mec.ca"
+
+    chrome.get(LINK)
+    time.sleep(10)
+    soup = BeautifulSoup(chrome.page_source, "html.parser")
+    products = []
+
+    listings = soup.find_all("div", {"class": "findify-components--cards--product"})
+
+    for listing in listings:
+
+        product = Product()
+
+        product.web_url = SITE + listing.find("a", {"class": "findify-components--cards--product__rating"})["href"]
+        product_title = listing.find("h3",{"class":"findify-components--cards--product__title"}).text
+
+        brandLen = getBrandLenFromStr(product_title)
+        product.scraped_product_name = product_title[brandLen:].strip()
+        product.scraped_brand = product_title[0:brandLen]
+
+
+        product.og_price = float(listing.find("span",{"class":"findify-components--cards--product--price__compare"}).text.replace("$","").replace(" CAD", ""))
+        product.sale_price = float(listing.find("span",{"class":"findify-components--cards--product--price__sale-price"}).text.replace("$","").replace("\n","").replace("from ",""))
+        product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+        imgDiv = listing.find("div", {"class":"findify-components-common--image"})
+        product.img_url = imgDiv.find("img")['src']
+
+
+
+        product.getGender()
+        product.getMatchedBrand()
+        product.getMatchedProduct()
+        product.generateID(retailer)
+
+        products.append(product)
+
     retailer.addProducts(products)
     return retailer
 

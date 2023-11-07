@@ -8,7 +8,7 @@ from Product import Product
 
 
 
-def scrapeClimbOn():
+def scrapeMadRock():
 
     """
     Crawls through all pages, extracting details for products on sale 
@@ -17,10 +17,10 @@ def scrapeClimbOn():
     :returnType: List
     """
 
-    retailer = Retailer(retailer="Climb On Squamish", country="Canada", currency="CAD")
+    retailer = Retailer(retailer="Mad Rock Canada", country="Canada", currency="CAD")
 
-    LINK = "https://climbonequipment.com/collections/climbing-shoes"
-    SITE = "https://climbonequipment.com"
+    LINK = "https://www.madrock.ca/collections/rock-shoes"
+    SITE = "https://www.madrock.ca"
 
     currPage = 1
     lastPage = getLastPage(LINK)
@@ -56,7 +56,7 @@ def getLastPage(LINK):
     soup = BeautifulSoup(response.text, "html.parser")
     pageDiv = soup.find("div", {"class": "pagination"})
     pageNums = pageDiv.find_all("span", {"class":"page"})
-    return int(pageNums[-1].text)
+    return len(pageNums)
 
 def scrapeCurrPage(soup, SITE, retailer):
     """
@@ -70,27 +70,33 @@ def scrapeCurrPage(soup, SITE, retailer):
     :returnType: List
     """
     products = []
-    listings = soup.find_all("div", {"class": "grid-product"})
+    listings = soup.find_all("div", {"class": "grid__item"})
     for listing in listings:
 
-        isDiscounted = listing.find("div", {"class": "grid-product__tag--sale"})
+        isDiscounted = listing.find("div", {"class": "product-tag"})
         if isDiscounted is None:
             continue
-
+        
         product = Product()
 
-        product.web_url = SITE + listing.find("a", {"class": "grid-product__link"})["href"]
-        product.scraped_product_name = listing.find("div", {"class": "grid-product__title"}).text
-        product.scraped_brand = listing.find("div", {"class": "grid-product__vendor"}).text
+        product.web_url = SITE + listing.find("a", {"class": "product-card"})["href"]
+        product.scraped_product_name = listing.find("div", {"class": "product-card__name"}).text
+        product.scraped_brand = "Mad Rock"
 
-        priceDIV = listing.find("div", {"class": "grid-product__price"})
+        # skip approach shoes
+        if "approach" in product.scraped_product_name.lower():
+            continue
 
-        product.og_price = float(priceDIV.find("span",{"class":"grid-product__price--original"}).text.replace("$","").replace(" CAD", ""))
-        product.sale_price = float(priceDIV.find_all("span",{"class":"visually-hidden"})[-1].next_sibling.replace("$","").replace("\n","").replace("from ",""))
+
+
+        priceDIV = listing.find("div", {"class": "product-card__price"})
+
+        product.og_price = float(priceDIV.find("s",{"class":"product-card__regular-price"}).text.replace("$",""))
+        product.sale_price = float(priceDIV.text.replace(" ","").split('\n')[4].replace("$",""))
         product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
 
-        imgDiv = listing.find("div", {"class":"grid__item-image-wrapper"})
-        product.img_url = "https:" + imgDiv.find("img")['src']
+        imgTag = listing.find("img", {"class":"product-card__image"})
+        product.img_url = "https:" + imgTag['src']
 
         product.getGender()
         product.getMatchedBrand()
@@ -104,9 +110,9 @@ def scrapeCurrPage(soup, SITE, retailer):
 
 
 if __name__ == "__main__":
-    res = scrapeClimbOn()
+    res = scrapeMadRock()
     # res.printList()
-    # res.saveToSheets()
+    res.saveToSheets()
 
 
 

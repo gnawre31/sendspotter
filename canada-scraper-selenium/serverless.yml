@@ -1,4 +1,4 @@
-service: canada-climbing-shoe-scraper-selenium
+service: sendspotter-can-selenium
 
 provider:
   name: aws
@@ -11,7 +11,7 @@ provider:
         platform: linux/amd64
 
 functions:
-  scrape:
+  scrape-selenium:
     timeout: 900
     # If you experience any errors such as Chrome crashing or not being available you might need to increase the storage available to your Lambda Function. See #102
     memorySize: 3008

@@ -94,7 +94,8 @@ class SheetsAPI():
                 product.gender,	
                 product.og_price,	
                 product.sale_price,	
-                product.discount_pct
+                product.discount_pct,
+                product.img_url
             ]
             values.append(data)
         body = {'values':values}

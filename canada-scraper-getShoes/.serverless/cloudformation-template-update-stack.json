@@ -71,10 +71,10 @@
         }
       }
     },
-    "ScrapeDashrequestsLogGroup": {
+    "GetShoesLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/sendspotter-can-requests-prod-scrape-requests"
+        "LogGroupName": "/aws/lambda/sendspotter-can-get-prod-getShoes"
       }
     },
     "IamRoleLambdaExecution": {
@@ -102,7 +102,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "sendspotter-can-requests",
+                  "sendspotter-can-get",
                   "prod",
                   "lambda"
                 ]
@@ -120,7 +120,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-requests-prod*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-get-prod*:*"
                     }
                   ]
                 },
@@ -131,7 +131,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-requests-prod*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-get-prod*:*:*"
                     }
                   ]
                 }
@@ -144,7 +144,7 @@
           "Fn::Join": [
             "-",
             [
-              "sendspotter-can-requests",
+              "sendspotter-can-get",
               "prod",
               {
                 "Ref": "AWS::Region"
@@ -155,14 +155,14 @@
         }
       }
     },
-    "ScrapeDashrequestsLambdaFunction": {
+    "GetShoesLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-requests-prod@sha256:7ecc51da78e9605d13bb353858363759d012e315db8ff43d043d898222174158"
+          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-get-prod@sha256:8df41b234afdc3ff79e10044207acd30f72c0f788994f0eee88d76cfda364bd7"
         },
         "PackageType": "Image",
-        "FunctionName": "sendspotter-can-requests-prod-scrape-requests",
+        "FunctionName": "sendspotter-can-get-prod-getShoes",
         "MemorySize": 3008,
         "Timeout": 900,
         "Role": {
@@ -173,17 +173,17 @@
         }
       },
       "DependsOn": [
-        "ScrapeDashrequestsLogGroup"
+        "GetShoesLogGroup"
       ]
     },
-    "ScrapeDashrequestsLambdaVersionA2uw00EtJAvBWVam1bQ7pMOxrMmP7b4HxGdagFTqs": {
+    "GetShoesLambdaVersion7agADdyzU3ng7H3N3WDPLQGSS6Hu5XsZfGebyEgYio": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "ScrapeDashrequestsLambdaFunction"
+          "Ref": "GetShoesLambdaFunction"
         },
-        "CodeSha256": "7ecc51da78e9605d13bb353858363759d012e315db8ff43d043d898222174158"
+        "CodeSha256": "8df41b234afdc3ff79e10044207acd30f72c0f788994f0eee88d76cfda364bd7"
       }
     }
   },
@@ -193,16 +193,16 @@
         "Ref": "ServerlessDeploymentBucket"
       },
       "Export": {
-        "Name": "sls-sendspotter-can-requests-prod-ServerlessDeploymentBucketName"
+        "Name": "sls-sendspotter-can-get-prod-ServerlessDeploymentBucketName"
       }
     },
-    "ScrapeDashrequestsLambdaFunctionQualifiedArn": {
+    "GetShoesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ScrapeDashrequestsLambdaVersionA2uw00EtJAvBWVam1bQ7pMOxrMmP7b4HxGdagFTqs"
+        "Ref": "GetShoesLambdaVersion7agADdyzU3ng7H3N3WDPLQGSS6Hu5XsZfGebyEgYio"
       },
       "Export": {
-        "Name": "sls-sendspotter-can-requests-prod-ScrapeDashrequestsLambdaFunctionQualifiedArn"
+        "Name": "sls-sendspotter-can-get-prod-GetShoesLambdaFunctionQualifiedArn"
       }
     }
   }

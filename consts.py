@@ -182,6 +182,7 @@ MAD_ROCK = [
     'haywire',
     'lotus',
     'redline lace',
+    'redline strap'
     'weaver',
     'remora',
     'remora lv',

@@ -13,7 +13,6 @@ from google.oauth2.service_account import Credentials
 
 import os
 
-
 BRANDS = [
     'scarpa',
     'la sportiva',
@@ -190,6 +189,7 @@ MAD_ROCK = [
     'haywire',
     'lotus',
     'redline lace',
+    'redline strap'
     'weaver',
     'remora',
     'remora lv',
@@ -340,8 +340,6 @@ class SheetsAPI():
         self.ID_RANGE = os.getenv("ID_RANGE")
         self.sheets = service.spreadsheets()
 
-        
-
     def getAllDataByRange(self, range):
         data = None
         try:
@@ -397,7 +395,8 @@ class SheetsAPI():
                 product.gender,	
                 product.og_price,	
                 product.sale_price,	
-                product.discount_pct
+                product.discount_pct,
+                product.img_url
             ]
             values.append(data)
         body = {'values':values}
@@ -412,12 +411,13 @@ def handler(event=None, context=None):
     try:
         climbOn = scrapeClimbOn()
         climbOn.saveToSheets()
+
+        madRock = scrapeMadRock()
+        madRock.saveToSheets()
+
         return "success"
     except:
         return "fail"
-
-    
-
 
 class Retailer():
     def __init__(self, retailer, country, currency):
@@ -576,6 +576,7 @@ class Product():
             print("sale_price: \t".expandtabs(30), self.sale_price)
             print("og_price: \t".expandtabs(30), self.og_price)
             print("discount_pct: \t".expandtabs(30), self.discount_pct)
+            print("img_url: \t".expandtabs(30), self.img_url)
             print("--------------------------------------------")
     
 def scrapeClimbOn():
@@ -635,11 +636,86 @@ def scrapeClimbOn():
 
             products.append(product)
 
+            imgDiv = listing.find("div", {"class":"grid__item-image-wrapper"})
+            product.img_url = "https:" + imgDiv.find("img")['src']
+
         retailer.addProducts(products)
         currPage += 1
 
     return retailer
-    
+
+def scrapeMadRock():
+
+    """
+    Crawls through all pages, extracting details for products on sale 
+
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    retailer = Retailer(retailer="Mad Rock Canada", country="Canada", currency="CAD")
+
+    LINK = "https://www.madrock.ca/collections/rock-shoes"
+    SITE = "https://www.madrock.ca"
+
+    currPage = 1
+     
+
+    response = requests.get(LINK) 
+    # print(response)
+    soup = BeautifulSoup(response.text, "html.parser")
+    pageDiv = soup.find("div", {"class": "pagination"})
+    pageNums = pageDiv.find_all("span", {"class":"page"})
+    lastPage = len(pageNums)
+
+
+    while currPage <= lastPage:
+        
+        url = f'{LINK}?page={currPage}'
+        response = requests.get(url) 
+        soup = BeautifulSoup(response.text, "html.parser")
+        products = []
+        listings = soup.find_all("div", {"class": "grid__item"})
+        for listing in listings:
+
+            isDiscounted = listing.find("div", {"class": "product-tag"})
+            if isDiscounted is None:
+                continue
+            
+            product = Product()
+
+            product.web_url = SITE + listing.find("a", {"class": "product-card"})["href"]
+            product.scraped_product_name = listing.find("div", {"class": "product-card__name"}).text
+            product.scraped_brand = "Mad Rock"
+
+            # skip approach shoes
+            if "approach" in product.scraped_product_name.lower():
+                continue
 
 
 
+            priceDIV = listing.find("div", {"class": "product-card__price"})
+
+            product.og_price = float(priceDIV.find("s",{"class":"product-card__regular-price"}).text.replace("$",""))
+            product.sale_price = float(priceDIV.text.replace(" ","").split('\n')[4].replace("$",""))
+            product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+            imgTag = listing.find("img", {"class":"product-card__image"})
+            product.img_url = "https:" + imgTag['src']
+
+            product.getGender()
+            product.getMatchedBrand()
+            product.getMatchedProduct()
+            product.generateID(retailer)
+
+            products.append(product)
+        retailer.addProducts(products)
+        currPage += 1
+
+    return retailer
+
+# if __name__ == "__main__":
+#     climbon = scrapeClimbOn()
+#     climbon.printList()
+#     madrock = scrapeMadRock()
+#     madrock.printList()

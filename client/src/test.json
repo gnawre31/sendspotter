@@ -1,0 +1,178 @@
+{
+  "data": [
+    {
+      "brand": "scarpa",
+      "id": "scarpa-origin-m",
+      "product_name": "origin",
+      "gender": "m",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "123",
+          "og_price": 149.99,
+          "sale_price": 99.99,
+          "discount_pct": 33,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.mec.ca/images/mec-logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        },
+        {
+          "retailer": "Sail",
+          "retailer_id": "456",
+          "og_price": 149.99,
+          "sale_price": 49.99,
+          "discount_pct": 67,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        },
+        {
+          "retailer": "MEC",
+          "retailer_id": "123",
+          "og_price": 149.99,
+          "sale_price": 99.99,
+          "discount_pct": 33,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.mec.ca/images/mec-logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        },
+        {
+          "retailer": "Sail",
+          "retailer_id": "456",
+          "og_price": 149.99,
+          "sale_price": 49.99,
+          "discount_pct": 67,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        },
+        {
+          "retailer": "MEC",
+          "retailer_id": "123",
+          "og_price": 149.99,
+          "sale_price": 99.99,
+          "discount_pct": 33,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.mec.ca/images/mec-logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        },
+        {
+          "retailer": "Sail",
+          "retailer_id": "456",
+          "og_price": 149.99,
+          "sale_price": 49.99,
+          "discount_pct": 67,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2859001018-768x768.png?v=1659061606&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "scarpa-drago-u",
+      "product_name": "drago",
+      "gender": "u",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "123",
+          "og_price": 249.99,
+          "sale_price": 199.99,
+          "discount_pct": 20,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/lotus1_1512x_2ddc5e85-b96d-4407-b3ce-f54c4fdf0b17.jpg?v=1673908658&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "scarpa",
+      "id": "scarpa-vapor-v-f",
+      "product_name": "vapor v",
+      "gender": "f",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "Climb On",
+          "retailer_id": "789",
+          "og_price": 229.99,
+          "sale_price": 199.99,
+          "discount_pct": 25,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://climbonequipment.com/cdn/shop/files/logo-climb-on-equipment-registered.png?v=1675628649&width=440",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/Five_Ten_NIAD_Lace_Climbing_Shoes_Black_FW2874_01_standard.jpg?v=1666890714&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "la-sportiva-finale",
+      "product_name": "finale",
+      "gender": "u",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "MEC",
+          "retailer_id": "123",
+          "og_price": 149.99,
+          "sale_price": 99.99,
+          "discount_pct": 33,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.mec.ca/images/mec-logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2801911034-1080x1080.png?v=1659060976&width=1080"
+        },
+        {
+          "retailer": "Sail",
+          "retailer_id": "456",
+          "og_price": 149.99,
+          "sale_price": 49.99,
+          "discount_pct": 67,
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "web_url": "https://www.google.com",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/2801911034-1080x1080.png?v=1659060976&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "la-sportiva-skwama-f",
+      "product_name": "skwama",
+      "gender": "f",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "Sail",
+          "retailer_id": "123",
+          "og_price": 229.99,
+          "sale_price": 179.99,
+          "discount_pct": 30,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://www.sail.ca/static/version1698235966/frontend/Sailpleinair/sailpleinair/en_CA/images/logo.svg",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/five-ten-niad-lace-climbing-shoes-black-fw2851-01.jpg?v=1659060357&width=1080"
+        }
+      ]
+    },
+    {
+      "brand": "la sportiva",
+      "id": "la-sportiva-tc-pro",
+      "product_name": "tc pro",
+      "gender": "u",
+      "date": "2023-11-05",
+      "retailers": [
+        {
+          "retailer": "Climb On",
+          "retailer_id": "789",
+          "og_price": 229.99,
+          "sale_price": 149.99,
+          "discount_pct": 40,
+          "web_url": "https://www.google.com",
+          "logo_url": "https://climbonequipment.com/cdn/shop/files/logo-climb-on-equipment-registered.png?v=1675628649&width=440",
+          "img_url": "https://climbonequipment.com/cdn/shop/products/five-ten-grandstone-shoes-beige-bc0866-01-standard.jpg?v=1659064750&width=1080"
+        }
+      ]
+    }
+  ]
+}

@@ -71,10 +71,10 @@
         }
       }
     },
-    "ScrapeLogGroup": {
+    "ScrapeDashseleniumLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/canada-climbing-shoe-scraper-selenium-prod-scrape"
+        "LogGroupName": "/aws/lambda/sendspotter-can-selenium-prod-scrape-selenium"
       }
     },
     "IamRoleLambdaExecution": {
@@ -102,7 +102,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "canada-climbing-shoe-scraper-selenium",
+                  "sendspotter-can-selenium",
                   "prod",
                   "lambda"
                 ]
@@ -120,7 +120,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/canada-climbing-shoe-scraper-selenium-prod*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-selenium-prod*:*"
                     }
                   ]
                 },
@@ -131,7 +131,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/canada-climbing-shoe-scraper-selenium-prod*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/sendspotter-can-selenium-prod*:*:*"
                     }
                   ]
                 }
@@ -144,7 +144,7 @@
           "Fn::Join": [
             "-",
             [
-              "canada-climbing-shoe-scraper-selenium",
+              "sendspotter-can-selenium",
               "prod",
               {
                 "Ref": "AWS::Region"
@@ -155,14 +155,14 @@
         }
       }
     },
-    "ScrapeLambdaFunction": {
+    "ScrapeDashseleniumLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-canada-climbing-shoe-scraper-selenium-prod@sha256:77c93b33247af1ab7a10877abd6f7eb9947f58c3c1e8574bc09713a0b1c71d36"
+          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-selenium-prod@sha256:d6918f4bf49f73ee3e6e57c7cdb9cb45ede2e7fc1289ee49bf53c36d86a64b6d"
         },
         "PackageType": "Image",
-        "FunctionName": "canada-climbing-shoe-scraper-selenium-prod-scrape",
+        "FunctionName": "sendspotter-can-selenium-prod-scrape-selenium",
         "MemorySize": 3008,
         "Timeout": 900,
         "Role": {
@@ -173,17 +173,17 @@
         }
       },
       "DependsOn": [
-        "ScrapeLogGroup"
+        "ScrapeDashseleniumLogGroup"
       ]
     },
-    "ScrapeLambdaVersion3D2cZvPLdCbKZe9ooyexO5uESDu3Ap29ck1Eexqoc": {
+    "ScrapeDashseleniumLambdaVersionjd0dJ5yJQDPTXRHMzG9EcxqnWfmML486ZumUbcvx8OU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "ScrapeLambdaFunction"
+          "Ref": "ScrapeDashseleniumLambdaFunction"
         },
-        "CodeSha256": "77c93b33247af1ab7a10877abd6f7eb9947f58c3c1e8574bc09713a0b1c71d36"
+        "CodeSha256": "d6918f4bf49f73ee3e6e57c7cdb9cb45ede2e7fc1289ee49bf53c36d86a64b6d"
       }
     }
   },
@@ -193,16 +193,16 @@
         "Ref": "ServerlessDeploymentBucket"
       },
       "Export": {
-        "Name": "sls-canada-climbing-shoe-scraper-selenium-prod-ServerlessDeploymentBucketName"
+        "Name": "sls-sendspotter-can-selenium-prod-ServerlessDeploymentBucketName"
       }
     },
-    "ScrapeLambdaFunctionQualifiedArn": {
+    "ScrapeDashseleniumLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ScrapeLambdaVersion3D2cZvPLdCbKZe9ooyexO5uESDu3Ap29ck1Eexqoc"
+        "Ref": "ScrapeDashseleniumLambdaVersionjd0dJ5yJQDPTXRHMzG9EcxqnWfmML486ZumUbcvx8OU"
       },
       "Export": {
-        "Name": "sls-canada-climbing-shoe-scraper-selenium-prod-ScrapeLambdaFunctionQualifiedArn"
+        "Name": "sls-sendspotter-can-selenium-prod-ScrapeDashseleniumLambdaFunctionQualifiedArn"
       }
     }
   }

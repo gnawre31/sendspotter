@@ -71,6 +71,6 @@ def scrapeCurrPage(soup, SITE, retailer):
 
 if __name__=="__main__":
     res = scrapeAltitude()
-    res.saveToSheets()
+    # res.saveToSheets()
 
     # print(res)
