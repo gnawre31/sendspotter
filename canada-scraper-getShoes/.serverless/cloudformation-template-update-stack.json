@@ -159,7 +159,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-get-prod@sha256:8df41b234afdc3ff79e10044207acd30f72c0f788994f0eee88d76cfda364bd7"
+          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-get-prod@sha256:22bae9e6eff12d74676879c7f2440b946af744325195ca8fc5650cf1b9f288d5"
         },
         "PackageType": "Image",
         "FunctionName": "sendspotter-can-get-prod-getShoes",
@@ -176,14 +176,14 @@
         "GetShoesLogGroup"
       ]
     },
-    "GetShoesLambdaVersion7agADdyzU3ng7H3N3WDPLQGSS6Hu5XsZfGebyEgYio": {
+    "GetShoesLambdaVersionTDpLNdTc68pN0GIWdccPdm6k9NUAhOPfNNF6cvKo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetShoesLambdaFunction"
         },
-        "CodeSha256": "8df41b234afdc3ff79e10044207acd30f72c0f788994f0eee88d76cfda364bd7"
+        "CodeSha256": "22bae9e6eff12d74676879c7f2440b946af744325195ca8fc5650cf1b9f288d5"
       }
     }
   },
@@ -199,7 +199,7 @@
     "GetShoesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetShoesLambdaVersion7agADdyzU3ng7H3N3WDPLQGSS6Hu5XsZfGebyEgYio"
+        "Ref": "GetShoesLambdaVersionTDpLNdTc68pN0GIWdccPdm6k9NUAhOPfNNF6cvKo"
       },
       "Export": {
         "Name": "sls-sendspotter-can-get-prod-GetShoesLambdaFunctionQualifiedArn"

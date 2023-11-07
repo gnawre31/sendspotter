@@ -3,6 +3,7 @@ from tempfile import mkdtemp
 import pandas as pd
 import json
 from datetime import date
+from datetime import datetime
 from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 
@@ -110,7 +111,7 @@ def handler(event=None, context=None):
             result["data"].append(data_entry)
 
         # # Now 'result' contains the desired dictionary structure
-        final_dict = {"data": result["data"]}
+        final_dict = {"data": result["data"], "datetime": str(datetime.now())}
         
 
 
