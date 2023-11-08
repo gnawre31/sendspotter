@@ -1,6 +1,10 @@
-# climbing-shoe-alerts
+# SendSpotter
 
-track sales on rock climbing shoes
+Tracks rock climbing shoe sales 
+
+## Architecture
+![alt text](https://github.com/gnawre31/sendspotter/blob/main/sendspotter.jpg?raw=true)
+
 
 ## Setup
 
