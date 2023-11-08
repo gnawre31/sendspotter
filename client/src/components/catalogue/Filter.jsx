@@ -11,8 +11,8 @@ const Filter = () => {
 
 
     return (
-        <div className='w-[800px] flex flex-col'>
-            <div className='w-3/5 bg-green-500 h-12 rounded-xl'>
+        <div className='lg:w-[800px] md:w-[600px] w-[310px] flex flex-col'>
+            <div className='w-3/5 h-12 rounded-xl'>
                 <form className='w-full h-full'>
                     <input type="text"
                         value={searchValue}

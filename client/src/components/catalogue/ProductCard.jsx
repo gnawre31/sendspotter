@@ -15,18 +15,18 @@ const ProductCard = (props) => {
 
 
     return (
-        <Link to={`/shoe/${id}`} className='rounded-xl border w-[180px] capitalize'>
-            <img src={img_url} className='rounded-tr-xl object-cover rounded-tl-xl h-[180px]' />
+        <Link to={`/shoe/${id}`} className='rounded-xl border lg:w-[180px] md:w-[160px] w-[140px]'>
+            <img src={img_url} className='rounded-tr-xl object-cover rounded-tl-xl lg:h-[180px] md:h-[160px] h-[140px] ' />
             <div className='m-2'>
-                <p className='font-bold text-lg'>{brand}</p>
-                <p className='text-lg mb-2'>{product_name}</p>
+                <p className='font-bold md:text-lg text-sm capitalize'>{brand}</p>
+                <p className='md:text-lg text-sm mb-2'>{product_name}</p>
                 <div className='flex justify-between'>
                     <span>
-                        <p className='text-red-600'>{"$" + min_sale_price_formatted}</p>
+                        <p className='text-red-600 text-sm'>{"$" + min_sale_price_formatted}</p>
                         <p className='line-through text-gray-500 text-sm'>{"$" + price_formatted}</p>
                     </span>
                     <span>
-                        <p className='text-white rounded-full bg-red-600 pt-2 pb-2 pl-4 pr-4'>{-max_discount_pct + "%"}</p>
+                        <p className='text-white text-sm rounded-full bg-red-600 md:pt-2 md:pb-2 md:pl-4 md:pr-4 pt-1 pb-1 pl-2 pr-2'>{-max_discount_pct + "%"}</p>
                     </span>
                 </div>
 

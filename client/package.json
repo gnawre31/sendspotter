@@ -8,8 +8,9 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "add-domain": "echo https://sendspotter.com > dist/CNAME",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run add-domain && gh-pages -d dist"
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",

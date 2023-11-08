@@ -58,22 +58,22 @@ const PDP = () => {
 
     if (shoe) {
         return (
-            <div className="h-screen w-screen flex items-center overflow-hidden">
-                <div className="h-3/4 w-1/2 flex justify-end">
+            <div className="h-screen w-screen flex items-center overflow-hidden lg:flex-row flex-col">
+                <div className="lg:h-3/4 lg:w-1/2 w-3/4 lg:mt-0 mt-12 lg:justify-end flex justify-center">
                     <img
                         src={shoe.img_url}
                         className="h-full m-w-full object-cover bg-cover rounded-tl-3xl rounded-bl-3xl"
                     />
                 </div>
-                <div className=" w-1/2 h-3/4 capitalize p-8">
+                <div className=" lg:w-1/2 h-3/4 capitalize md:p-8 md:mt-0 mt-8 flex lg:justify-center md:w-3/4 w-5/6 flex-col">
                     <Link to="/" className="flex items-center hover:text-blue-500">
                         {" "}
                         <AiOutlineArrowLeft className="mr-2" />
                         <img src={logo} className="w-28 hover:text-blue-500" />
                     </Link>
-                    <p className="text-5xl font-bold mt-4">{`${shoe.brand} ${shoe.product_name}`}</p>
-                    <p className="text-gray-500 mb-8">{gender}</p>
-                    <div className="text-gray-500 mb-8">
+                    <p className="lg:text-5xl md:text-4xl text-4xl font-bold md:mt-4 mt-2">{`${shoe.brand} ${shoe.product_name}`}</p>
+                    <p className="text-gray-500 md:mb-8 mb-4">{gender}</p>
+                    <div className="text-gray-500 md:mb-8 mb-4">
                         <p>Currency: {currency}</p>
                         <p>Last Updated: {date}</p>
                     </div>

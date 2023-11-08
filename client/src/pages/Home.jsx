@@ -10,18 +10,17 @@ const Home = () => {
 
     const currency = useShoeStore(state => state.currency)
 
-
-
     return (
         <div>
 
-            <div className='w-[800px] flex m-auto justify-center items-center flex-col mb-24'>
-                <div className='w-full flex mt-8 mb-4 justify-between'>
+            <div className='lg:w-[800px] md:w-[600px] w-[310px] flex m-auto justify-center items-center flex-col mb-24'>
+                <div className='w-full  mt-8 mb-4'>
                     <img src={logo} className='w-48' />
-                    <p className='flex justify-center items-center text-gray-500'>Rock climbing shoe sales, updated daily</p>
+                    <p className='text-sm text-gray-400'>Rock climbing shoe sales, updated daily</p>
+                    <p className='text-sm text-gray-400'>{`Region: Canada, Currency: ${currency} `}</p>
                 </div>
                 <Filter />
-                <p className='text-sm text-gray-400 w-full mt-4 mb-4'>{`Region: Canada, Currency: ${currency} `}</p>
+
                 <ProductGrid />
             </div>
         </div>

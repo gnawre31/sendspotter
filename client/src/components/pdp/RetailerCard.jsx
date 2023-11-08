@@ -22,7 +22,7 @@ const RetailerCard = (props) => {
                 <p className="text-red-600">{"$" + sale_price_formatted}</p>
                 <p className='line-through text-gray-500 text-sm'>{"$" + og_price_formatted}</p>
             </span>
-            <span className='ml-12 h-full w-28 flex justify-center items-center'>
+            <span className='md:ml-12 ml-4 h-full md:w-28 w-20 flex justify-center items-center'>
                 <img src={logo_url} />
             </span>
 

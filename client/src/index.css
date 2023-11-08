@@ -11,3 +11,16 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+@layer base {
+    @font-face {
+        font-family: 'graphik';
+        font-weight: 400;
+        src: url(assets/font/Graphik-Regular.ttf) format("trueType");
+      }
+    @font-face {
+      font-family: 'graphik';
+      font-weight: 500;
+      src: url(assets/font/Graphik-Medium.ttf) format("trueType");
+    }
+  }

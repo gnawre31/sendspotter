@@ -12,7 +12,7 @@ const ProductGrid = () => {
     <div>Loading</div>
   )
   else return (
-    <div className='flex flex-wrap gap-4 w-[800px]'>
+    <div className='flex flex-wrap gap-6 lg:w-[800px] md:w-[600px] w-[310px]'>
 
 
       {shoes.data && shoes.data.map((shoe, idx) => {
