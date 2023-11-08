@@ -113,6 +113,11 @@ class Product():
             else:
                 self.gender = 'u'
                 self.formatted_product_name = self.formatted_product_name.replace("unisex","")
+                self.formatted_product_name = self.formatted_product_name.replace("children's","")
+                self.formatted_product_name = self.formatted_product_name.replace("children","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid's","")
+                self.formatted_product_name = self.formatted_product_name.replace("kids","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid","")
 
             self.formatted_product_name = self.formatted_product_name.strip()   
         
