@@ -20,23 +20,51 @@ Python
   pip install -r requirements.txt
 ```
 
+Client
+
+```
+  cd client
+  npm install
+```
+
 ENV
 rename sample.env to ".env" and fill in environment variables
 
 ```
-TYPE=
-PROJECT_ID=
-PRIVATE_KEY_ID=
-PRIVATE_KEY=
-CLIENT_EMAIL=
-CLIENT_ID=
-AUTH_URI=
-TOKEN_URI=
-AUTH_PROVIDER_X509_CERT_URL=
-CLIENT_X509_CERT_URL=
-UNIVERSE_DOMAIN=
+  TYPE=
+  PROJECT_ID=
+  PRIVATE_KEY_ID=
+  PRIVATE_KEY=
+  CLIENT_EMAIL=
+  CLIENT_ID=
+  AUTH_URI=
+  TOKEN_URI=
+  AUTH_PROVIDER_X509_CERT_URL=
+  CLIENT_X509_CERT_URL=
+  UNIVERSE_DOMAIN=
+  
+  SHEET_ID=
+  ALL_RANGE=
+  ID_RANGE=
+```
+## AWS ECR
+Push dockerized AWS Lambda code to ECR
+```
+  cd [dir]
+  sls deploy
+```
 
-SHEET_ID=
-ALL_RANGE=
-ID_RANGE=
+## Client scripts
+
+Running dev server
+```
+  cd client
+  npm run dev
+```
+
+Deploying 
+```
+  cd client
+  npm run predeploy
+  npm run deploy
 ```
