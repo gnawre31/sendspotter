@@ -26,6 +26,7 @@ const App = () => {
   return (
     <div className="font-graphik">
       <Routes>
+        <Route path="*" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/shoe/:id" element={<PDP />} />
 
