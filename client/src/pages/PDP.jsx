@@ -40,7 +40,7 @@ const PDP = () => {
 
                 // set gender
                 if (found[0].gender === "m") setGender("Men's");
-                else if (found[0].gender === "w") setGender("Women's");
+                else if (found[0].gender === "f") setGender("Women's");
                 else setGender("Unisex");
 
                 // set date

@@ -9,7 +9,22 @@ export const useShoeStore = create((set) => ({
   currency: "CAD",
   searchValue: "",
   logos: [],
+  sortBy: "discount",
   setSearch: (searchValue) => set(() => ({ searchValue: searchValue })),
+  sortShoes: (sortBy, shoes) => {
+    const shoesCopy = { ...shoes };
+    if (sortBy === "brand") {
+      shoesCopy.data.sort((a, b) => a.brand.localeCompare(b.brand));
+    } else if (sortBy === "price") {
+      shoesCopy.data.sort((a, b) => a.min_sale_price - b.min_sale_price);
+    } else if (sortBy === "discount") {
+      shoesCopy.data.sort((a, b) => b.max_discount_pct - a.max_discount_pct);
+    }
+    set(() => ({
+      shoes: shoesCopy,
+      sortBy: sortBy,
+    }));
+  },
   getAllShoes: async () => {
     set(() => ({ loading: true }));
 
@@ -43,6 +58,12 @@ export const useShoeStore = create((set) => ({
 
         return shoe;
       });
+
+      // sort by brand by default
+      shoes.data.sort((a, b) => b.max_discount_pct - a.max_discount_pct);
+      // const sorted_by_price = shoes.data.sort(
+      //   (a, b) => a.min_sale_price - b.min_sale_price
+      // );
 
       set(() => ({ shoes: shoes, logos: logos }));
     }
