@@ -58,14 +58,14 @@ const PDP = () => {
 
     if (shoe) {
         return (
-            <div className="h-screen w-screen flex items-center overflow-hidden lg:flex-row flex-col">
+            <div className="h-screen w-screen flex items-center md:overflow-hidden lg:flex-row flex-col">
                 <div className="lg:h-3/4 lg:w-1/2 w-3/4 lg:mt-0 mt-12 lg:justify-end flex justify-center">
                     <img
                         src={shoe.img_url}
                         className="h-full m-w-full object-cover bg-cover rounded-tl-3xl rounded-bl-3xl"
                     />
                 </div>
-                <div className=" lg:w-1/2 h-3/4 capitalize md:p-8 md:mt-0 mt-8 flex lg:justify-center md:w-3/4 w-5/6 flex-col">
+                <div className=" lg:w-1/2 md:h-3/4 h-full capitalize md:p-8 md:mt-0 mt-8 flex lg:justify-center md:w-3/4 w-5/6 flex-col">
                     <Link to="/" className="flex items-center hover:text-blue-500">
                         {" "}
                         <AiOutlineArrowLeft className="mr-2" />
