@@ -12,7 +12,7 @@ const Filter = () => {
 
     return (
         <div className='lg:w-[800px] md:w-[600px] w-[310px] flex flex-col'>
-            <div className='w-3/5 h-12 rounded-xl'>
+            <div className='w-3/5 h-12 rounded-xl mb-2'>
                 <form className='w-full h-full'>
                     <input type="text"
                         value={searchValue}
@@ -23,7 +23,7 @@ const Filter = () => {
                 </form>
 
             </div>
-            <div className="relative">
+            <div className="relative mb-2">
                 <select
                     id="sort"
                     name="sort"

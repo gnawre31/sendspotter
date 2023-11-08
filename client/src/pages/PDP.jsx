@@ -79,7 +79,7 @@ const PDP = () => {
                     </div>
                     <p className="mb-2 font-bold">{`Discounted on ${shoe.retailers.length
                         } site${shoe.retailers.length > 1 ? "s" : ""}:`}</p>
-                    <div className="h-1/2 overflow-scroll hide-scroll">
+                    <div className="h-1/2 overflow-scroll hide-scroll md:mb-0 mb-12">
                         {shoe.retailers.map((retailer, idx) => (
                             <RetailerCard key={idx} retailer={retailer} />
                         ))}
