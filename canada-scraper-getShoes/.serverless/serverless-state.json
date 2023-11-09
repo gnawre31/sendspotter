@@ -178,7 +178,7 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-get-prod@sha256:22bae9e6eff12d74676879c7f2440b946af744325195ca8fc5650cf1b9f288d5"
+                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-get-prod@sha256:ad2a2d9f983abe38bcfd53fa201bfcbade483f59fe71ed24be4d701feffe49d9"
               },
               "PackageType": "Image",
               "FunctionName": "sendspotter-can-get-prod-getShoes",
@@ -195,14 +195,14 @@
               "GetShoesLogGroup"
             ]
           },
-          "GetShoesLambdaVersionTDpLNdTc68pN0GIWdccPdm6k9NUAhOPfNNF6cvKo": {
+          "GetShoesLambdaVersionD73KCxOlPbW958FArusd1iC7uPHL964CgCfQxZf8A4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetShoesLambdaFunction"
               },
-              "CodeSha256": "22bae9e6eff12d74676879c7f2440b946af744325195ca8fc5650cf1b9f288d5"
+              "CodeSha256": "ad2a2d9f983abe38bcfd53fa201bfcbade483f59fe71ed24be4d701feffe49d9"
             }
           }
         },
@@ -218,7 +218,7 @@
           "GetShoesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetShoesLambdaVersionTDpLNdTc68pN0GIWdccPdm6k9NUAhOPfNNF6cvKo"
+              "Ref": "GetShoesLambdaVersionD73KCxOlPbW958FArusd1iC7uPHL964CgCfQxZf8A4"
             },
             "Export": {
               "Name": "sls-sendspotter-can-get-prod-GetShoesLambdaFunctionQualifiedArn"
@@ -323,7 +323,7 @@
         "package": {},
         "memory": 3008,
         "vpc": {},
-        "versionLogicalId": "GetShoesLambdaVersionTDpLNdTc68pN0GIWdccPdm6k9NUAhOPfNNF6cvKo"
+        "versionLogicalId": "GetShoesLambdaVersionD73KCxOlPbW958FArusd1iC7uPHL964CgCfQxZf8A4"
       }
     },
     "configValidationMode": "warn",
@@ -341,7 +341,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/sendspotter-can-get/prod/1699361116813-2023-11-07T12:45:16.813Z",
+    "artifactDirectoryName": "serverless/sendspotter-can-get/prod/1699539883772-2023-11-09T14:24:43.772Z",
     "artifact": ""
   }
 }

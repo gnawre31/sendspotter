@@ -29,6 +29,7 @@ export const useShoeStore = create((set) => ({
     set(() => ({ loading: true }));
 
     const today = new Date().toISOString().slice(0, 10);
+    // const today = "2023-11-09";
     const jsonString = localStorage.getItem(today);
 
     let shoes;

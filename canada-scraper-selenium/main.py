@@ -17,18 +17,18 @@ import os
 
 
 BRANDS = [
-    'scarpa',
-    'la sportiva',
-    'black diamond',
-    'boreal',
-    'butora',
-    'evolv',
-    'five ten',
-    'mad rock',
-    'ocun',
-    'red chili'
-    'tenaya',
-    'unparallel'
+    'Scarpa',
+    'La Sportiva',
+    'Black Diamond',
+    'Boreal',
+    'Butora',
+    'Evolv',
+    'Five Ten',
+    'Mad Rock',
+    'Ocun',
+    'Red Chili'
+    'Tenaya',
+    'Unparallel'
 ]
 
 
@@ -105,8 +105,9 @@ BLACK_DIAMOND = [
     'Aspect',
     'Aspect Pro',
     'Zone',
-    'Zone LV'
-    'Focus'
+    'Zone LV',
+    'Focus',
+    'Session'
 ]
 
 BOREAL = [
@@ -314,18 +315,18 @@ UNPARALLEL = [
 
 
 brandConstDict = {
-    'scarpa': SCARPA,
-    'la sportiva': LA_SPORTIVA,
-    'black diamond':BLACK_DIAMOND,
-    'boreal':BOREAL,
-    'butora':BUTORA,
-    'evolv':EVOLV,
-    'five ten':FIVE_TEN,
-    'mad rock':MAD_ROCK,
-    'ocun':OCUN,
-    'red chili':RED_CHILI,
-    'tenaya':TENAYA,
-    'unparallel':UNPARALLEL,
+    'Scarpa': SCARPA,
+    'La Sportiva': LA_SPORTIVA,
+    'Black Diamond':BLACK_DIAMOND,
+    'Boreal':BOREAL,
+    'Butora':BUTORA,
+    'Evolv':EVOLV,
+    'Five Ten':FIVE_TEN,
+    'Mad Rock':MAD_ROCK,
+    'Ocun':OCUN,
+    'Red Chili':RED_CHILI,
+    'Tenaya':TENAYA,
+    'Unparallel':UNPARALLEL,
 }
 
 
@@ -452,6 +453,7 @@ def handler(event=None, context=None):
             sail.saveToSheets()
         except:
             print("500 - failed to scrape Sail")
+            raise
 
         try:
             lastHunt, altitude = scrapeLastHuntAltitude(chrome)
@@ -459,24 +461,29 @@ def handler(event=None, context=None):
             altitude.saveToSheets()
         except:
             print("500 - failed to scrape The Last Hunt, Altitude")
+            raise
 
         try:
             vpo = scrapeVPO(chrome)
             vpo.saveToSheets()
         except:
             print("500 - failed to scrape VPO")
+            raise
 
         try:
             mec = scrapeMEC(chrome)
             mec.saveToSheets()
+
         except:
             print("500 - failed to scrape MEC")   
+            raise
 
         try:
             blocShop = scrapeBlocShop(chrome)
             blocShop.saveToSheets()
         except:
             print("500 - failed to scrape MEC")   
+            raise
 
         return "200 - sail, vpo, mec, blocshop, last hunt, altitude"
     except:
@@ -564,12 +571,12 @@ class Product():
             self.formatted_product_name = self.formatted_product_name.replace("climbing","").replace("shoes","").replace("shoe","").replace("rock","").replace("-","")
             
             colors = ['blue', 'yellow','orange','purple','charcoal','black','white','green','red','brown','pink','silver']
-            for color in colors:
-                self.formatted_product_name = self.formatted_product_name.replace(color,"")
+            for c in colors:
+                self.formatted_product_name = self.formatted_product_name.replace(c,"")
 
             # check if men, women, or unisex are included in name
-            femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn']
-            maleNouns = ['men', 'mens', 'men\'s', 'male']
+            femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn', 'w\'s']
+            maleNouns = ['men', 'mens', 'men\'s', 'male','m\'s']
 
             if any(word in self.formatted_product_name for word in femaleNouns):
                 self.gender = 'f'
@@ -577,16 +584,25 @@ class Product():
                 self.formatted_product_name = self.formatted_product_name.replace("womens","")
                 self.formatted_product_name = self.formatted_product_name.replace("women","")
                 self.formatted_product_name = self.formatted_product_name.replace("wmn","")
+                self.formatted_product_name = self.formatted_product_name.replace("w\'s","")
+
 
             elif any(word in self.formatted_product_name for word in maleNouns):
                 self.gender = 'm'
                 self.formatted_product_name = self.formatted_product_name.replace("men\'s","")
                 self.formatted_product_name = self.formatted_product_name.replace("mens","")
                 self.formatted_product_name = self.formatted_product_name.replace("men","")
+                self.formatted_product_name = self.formatted_product_name.replace("m\'s","")
+
             
             else:
                 self.gender = 'u'
                 self.formatted_product_name = self.formatted_product_name.replace("unisex","")
+                self.formatted_product_name = self.formatted_product_name.replace("children's","")
+                self.formatted_product_name = self.formatted_product_name.replace("children","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid's","")
+                self.formatted_product_name = self.formatted_product_name.replace("kids","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid","")
 
             self.formatted_product_name = self.formatted_product_name.strip()   
         
@@ -652,7 +668,7 @@ def getBrandLenFromStr(product_title):
     product_title = product_title.lower()
     matched = ""
     for b in BRANDS:
-        if b in product_title:
+        if b.lower() in product_title.lower():
             matched = b
             break
 
@@ -901,7 +917,7 @@ def scrapeBlocShop(chrome):
         chrome.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(2)
 
-        soup = BeautifulSoup(driver.page_source, "html.parser")
+        soup = BeautifulSoup(chrome.page_source, "html.parser")
         products = []
         listings = soup.find_all("div", {"class": "grid__item"})
 
@@ -927,7 +943,7 @@ def scrapeBlocShop(chrome):
             product.og_price = float(productDIV.find("s",{"class":"t-subdued"}).text.replace("$",""))
             product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
 
-            product.img_url = "https" + productDIV.find("img", {"class":"image__img"})['src']
+            product.img_url = "https:" + productDIV.find("img", {"class":"image__img"})['src']
 
             product.getGender()
             product.getMatchedBrand()

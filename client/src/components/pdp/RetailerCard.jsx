@@ -6,7 +6,10 @@ const RetailerCard = (props) => {
     const { discount_pct, sale_price, og_price, web_url, retailer_id } = props.retailer
 
     const logos = useShoeStore(state => state.logos)
-    const logo_url = logos.retailers.filter(logo => logo.retailer_id === retailer_id)[0].logo_url
+    const l = logos.retailers.filter(logo => logo.retailer_id === retailer_id)
+
+    let logo_url = ""
+    if (l.length > 0) logo_url = l[0].logo_url
 
 
     const sale_price_formatted = sale_price.toFixed(2)
@@ -22,8 +25,8 @@ const RetailerCard = (props) => {
                 <p className="text-red-600">{"$" + sale_price_formatted}</p>
                 <p className='line-through text-gray-500 text-sm'>{"$" + og_price_formatted}</p>
             </span>
-            <span className='md:ml-12 ml-4 h-full md:w-28 w-20 flex justify-center items-center'>
-                <img src={logo_url} />
+            <span className='md:ml-12 ml-4 h-16 md:w-28 w-20 flex justify-center items-center'>
+                <img src={logo_url} className="h-16 md:w-28 w-20 object-contain" />
             </span>
 
             <div className='ml-2 flex justify-center items-center text-2xl p-4'><AiOutlineArrowRight /></div>

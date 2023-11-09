@@ -1,16 +1,16 @@
 BRANDS = [
-    'scarpa',
-    'la sportiva',
-    'black diamond',
-    'boreal',
-    'butora',
-    'evolv',
-    'five ten',
-    'mad rock',
-    'ocun',
-    'red chili'
-    'tenaya',
-    'unparallel'
+    'Scarpa',
+    'La Sportiva',
+    'Black Diamond',
+    'Boreal',
+    'Butora',
+    'Evolv',
+    'Five Ten',
+    'Mad Rock',
+    'Ocun',
+    'Red Chili'
+    'Tenaya',
+    'Unparallel'
 ]
 
 

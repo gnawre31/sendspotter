@@ -14,18 +14,18 @@ from google.oauth2.service_account import Credentials
 import os
 
 BRANDS = [
-    'scarpa',
-    'la sportiva',
-    'black diamond',
-    'boreal',
-    'butora',
-    'evolv',
-    'five ten',
-    'mad rock',
-    'ocun',
-    'red chili'
+    'Scarpa',
+    'La Sportiva',
+    'Black Diamond',
+    'Boreal',
+    'Butora',
+    'Evolv',
+    'Five Ten',
+    'Mad Rock',
+    'Ocun',
+    'Red Chili'
     'tenaya',
-    'unparallel'
+    'Unparallel'
 ]
 
 
@@ -103,7 +103,8 @@ BLACK_DIAMOND = [
     'Aspect Pro',
     'Zone',
     'Zone LV',
-    'Focus'
+    'Focus',
+    'Session'
 ]
 
 BOREAL = [
@@ -311,18 +312,18 @@ UNPARALLEL = [
 
 
 brandConstDict = {
-    'scarpa': SCARPA,
-    'la sportiva': LA_SPORTIVA,
-    'black diamond':BLACK_DIAMOND,
-    'boreal':BOREAL,
-    'butora':BUTORA,
-    'evolv':EVOLV,
-    'five ten':FIVE_TEN,
-    'mad rock':MAD_ROCK,
-    'ocun':OCUN,
-    'red chili':RED_CHILI,
-    'tenaya':TENAYA,
-    'unparallel':UNPARALLEL,
+    'Scarpa': SCARPA,
+    'La Sportiva': LA_SPORTIVA,
+    'Black Diamond':BLACK_DIAMOND,
+    'Boreal':BOREAL,
+    'Butora':BUTORA,
+    'Evolv':EVOLV,
+    'Five Ten':FIVE_TEN,
+    'Mad Rock':MAD_ROCK,
+    'Ocun':OCUN,
+    'Red Chili':RED_CHILI,
+    'Tenaya':TENAYA,
+    'Unparallel':UNPARALLEL,
 }
 
 
@@ -521,8 +522,8 @@ class Product():
                 self.formatted_product_name = self.formatted_product_name.replace(color,"")
             
             # check if men, women, or unisex are included in name
-            femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn']
-            maleNouns = ['men', 'mens', 'men\'s', 'male']
+            femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn', 'w\'s']
+            maleNouns = ['men', 'mens', 'men\'s', 'male','m\'s']
 
             if any(word in self.formatted_product_name for word in femaleNouns):
                 self.gender = 'f'
@@ -530,16 +531,23 @@ class Product():
                 self.formatted_product_name = self.formatted_product_name.replace("womens","")
                 self.formatted_product_name = self.formatted_product_name.replace("women","")
                 self.formatted_product_name = self.formatted_product_name.replace("wmn","")
+                self.formatted_product_name = self.formatted_product_name.replace("w\'s","")
 
             elif any(word in self.formatted_product_name for word in maleNouns):
                 self.gender = 'm'
                 self.formatted_product_name = self.formatted_product_name.replace("men\'s","")
                 self.formatted_product_name = self.formatted_product_name.replace("mens","")
                 self.formatted_product_name = self.formatted_product_name.replace("men","")
+                self.formatted_product_name = self.formatted_product_name.replace("m\'s","")
             
             else:
                 self.gender = 'u'
                 self.formatted_product_name = self.formatted_product_name.replace("unisex","")
+                self.formatted_product_name = self.formatted_product_name.replace("children's","")
+                self.formatted_product_name = self.formatted_product_name.replace("children","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid's","")
+                self.formatted_product_name = self.formatted_product_name.replace("kids","")
+                self.formatted_product_name = self.formatted_product_name.replace("kid","")
 
             self.formatted_product_name = self.formatted_product_name.strip()   
         

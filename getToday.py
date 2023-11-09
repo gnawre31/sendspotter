@@ -16,11 +16,14 @@ if __name__ == "__main__":
     today_df = df[df['date'] == today]
 
     # Group by unique combinations of the specified columns
-    grouped = today_df.groupby(['matched_brand', 'id', 'matched_product_name', 'gender', 'date'])
+    grouped = today_df.groupby(['matched_brand', 'matched_product_name', 'gender', 'date'])
     result = {"data": []}
 
+
+
     # # Iterate through the groups and create dict 
-    for (matched_brand, id, matched_product_name, gender, date_val), group in grouped:
+    for (matched_brand, matched_product_name, gender, date_val), group in grouped:
+        # grouped['id'] = matched_brand + '-' + matched_product_name + '-' + gender
         retailers = []
         
         for _, row in group.iterrows():
@@ -37,7 +40,6 @@ if __name__ == "__main__":
         
         data_entry = {
             "brand": matched_brand,
-            "id": id,
             "product_name": matched_product_name,
             "gender": gender,
             "date": date_val,
@@ -49,7 +51,8 @@ if __name__ == "__main__":
     # Now 'result' contains the desired dictionary structure
     final_dict = {"data": result["data"]}
     
-    res = json.dumps(final_dict)
+
+
 
 
     
