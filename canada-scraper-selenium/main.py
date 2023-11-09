@@ -105,6 +105,7 @@ BLACK_DIAMOND = [
     'Aspect',
     'Aspect Pro',
     'Zone',
+    'Zone LV'
     'Focus'
 ]
 
@@ -452,27 +453,32 @@ def handler(event=None, context=None):
         except:
             print("500 - failed to scrape Sail")
 
-        # try:
-            # altitude = scrapeAltitude(chrome)
-            # altitude.saveToSheets()
-        # except:
-        #     print("500 - failed to scrape altitude")
+        try:
+            lastHunt, altitude = scrapeLastHuntAltitude(chrome)
+            lastHunt.saveToSheets()
+            altitude.saveToSheets()
+        except:
+            print("500 - failed to scrape The Last Hunt, Altitude")
 
         try:
             vpo = scrapeVPO(chrome)
-            vpo.printList()
             vpo.saveToSheets()
         except:
             print("500 - failed to scrape VPO")
 
         try:
             mec = scrapeMEC(chrome)
-            mec.printList()
             mec.saveToSheets()
         except:
             print("500 - failed to scrape MEC")   
 
-        return "200"
+        try:
+            blocShop = scrapeBlocShop(chrome)
+            blocShop.saveToSheets()
+        except:
+            print("500 - failed to scrape MEC")   
+
+        return "200 - sail, vpo, mec, blocshop, last hunt, altitude"
     except:
         return "500 failed" 
 
@@ -556,6 +562,11 @@ class Product():
             # set to lower case and replace generic words
             self.formatted_product_name = self.scraped_product_name.lower()
             self.formatted_product_name = self.formatted_product_name.replace("climbing","").replace("shoes","").replace("shoe","").replace("rock","").replace("-","")
+            
+            colors = ['blue', 'yellow','orange','purple','charcoal','black','white','green','red','brown','pink','silver']
+            for color in colors:
+                self.formatted_product_name = self.formatted_product_name.replace(color,"")
+
             # check if men, women, or unisex are included in name
             femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn']
             maleNouns = ['men', 'mens', 'men\'s', 'male']
@@ -699,45 +710,53 @@ def scrapeSail(chrome):
     retailer.addProducts(products)
     return retailer
 
-def scrapeAltitude(chrome):
+def scrapeLastHuntAltitude(chrome):
 
-    """
-    Crawls through all pages, extracting details for products on sale 
+    lastHunt = Retailer(retailer="The Last Hunt", country="Canada", currency="CAD")
+    altitude = Retailer(retailer="Altitude Sports", country="Canada", currency="CAD")
+    retailers = [lastHunt, altitude]
 
-    :return: res: product details for all products on sale 
-    :returnType: List
-    """
+    links = [
+        ["https://www.thelasthunt.com/collections/gear-climbing-climbing-shoes","https://www.thelasthunt.com" ],
+        ["https://www.altitude-sports.com/collections/gear-climbing-climbing-shoes#?filter.on_sale=Yes","https://www.altitude-sports.com"]
+    ]
 
-    retailer = Retailer(retailer="Altitude Sports", country="Canada", currency="CAD")
+    for idx, l in enumerate(links):
+        retailer = retailers[idx]
+        LINK = l[0]
+        SITE = l[1]
+        chrome.get(LINK)
+        time.sleep(5)
+        soup = BeautifulSoup(chrome.page_source, "html.parser")
+        products = []
+        listings = soup.find_all("li", {"class": "ss-product"})
+        # all products are discounted on this page
 
-    LINK = "https://www.altitude-sports.com/collections/gear-climbing-climbing-shoes#?filter.on_sale=Yes"
-    SITE = "https://www.altitude-sports.com"
-    chrome.get(LINK)
-    time.sleep(15)
-    soup = BeautifulSoup(chrome.page_source, "html.parser")
-    products = []
-    listings = soup.find_all("div", {"class": "ss-product__info"})
-    # all products are discounted on this page
+        for listing in listings:
 
-    for listing in listings:
+            product = Product()
 
-        product = Product()
+            product.web_url = SITE + listing.find("a", {"class": "ss-product__info__manufacturer"})['href']
+            product.scraped_brand = listing.find("a", {"class": "ss-product__info__manufacturer"}).text.strip()
+            product.scraped_product_name = listing.find("h3", {"class": "ss-product__info__name"}).text.strip()
+            product.sale_price = float(listing.find("span",{"class":"ss-product__price--special"}).text.replace("$","").replace("CAN ","").strip())
+            product.og_price = float(listing.find("span",{"class":"ss-product__price--old"}).text.replace("$","").replace("CAN ","").strip())
+            product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+            product.img_url = listing.find("img",{"class":"ss-product__img"})['src']
 
-        product.web_url = SITE + listing.find("a", {"class": "ss-product__info__manufacturer"})['href']
-        product.scraped_brand = listing.find("a", {"class": "ss-product__info__manufacturer"}).text.strip()
-        product.scraped_product_name = listing.find("h3", {"class": "ss-product__info__name"}).text.strip()
-        product.sale_price = float(listing.find("span",{"class":"ss-product__price--special"}).text.replace("$","").replace("CAN ","").strip())
-        product.og_price = float(listing.find("span",{"class":"ss-product__price--old"}).text.replace("$","").replace("CAN ","").strip())
-        product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+            # skip approach shoes
+            if "approach" in product.scraped_product_name.lower() or "leather" in product.scraped_product_name.lower() or "tx2" in product.scraped_product_name.lower() or "hiking" in product.scraped_product_name.lower():
+                continue
 
-        product.getGender()
-        product.getMatchedBrand()
-        product.getMatchedProduct()
-        product.generateID(retailer)
+            product.getGender()
+            product.getMatchedBrand()
+            product.getMatchedProduct()
+            product.generateID(retailer)
 
-        products.append(product)
-    retailer.addProducts(products)
-    return retailer
+            products.append(product)
+        retailer.addProducts(products)
+
+    return retailers
 
 def scrapeVPO(chrome):
 
@@ -848,7 +867,74 @@ def scrapeMEC(chrome):
 
     retailer.addProducts(products)
     return retailer
+     
+def scrapeBlocShop(chrome):
 
+    """
+    Crawls through all pages, extracting details for products on sale 
 
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    links = {
+        "la sportiva":"https://shop.blocshop.com/collections/la-sportiva/shoes",
+        "scarpa":"https://shop.blocshop.com/collections/scarpa-1/shoes",
+        "tenaya": "https://shop.blocshop.com/collections/tenaya/shoes",
+        "unparallel":"https://shop.blocshop.com/collections/unparallel",
+        "five ten":"https://shop.blocshop.com/collections/five-ten/shoes",
+        "evolv":"https://shop.blocshop.com/collections/evolv/shoes",
+        "mad rock":"https://shop.blocshop.com/collections/mad-rock/shoes",
+        "black diamond":"https://shop.blocshop.com/collections/black-diamond-shoes"
+    }
+    
+    retailer = Retailer(retailer="Bloc Shop", country="Canada", currency="CAD")
+
+    SITE = "https://shop.blocshop.com"
+
+    for brand in links.keys():
+        LINK = links[brand]
+        chrome.get(LINK)
+        time.sleep(2)
+
+        # scroll down once
+        chrome.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(2)
+
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+        products = []
+        listings = soup.find_all("div", {"class": "grid__item"})
+
+        for listing in listings:
+
+            isDiscounted = listing.find("div", {"class": "product-item__badge--sale"})
+            if isDiscounted is None:
+                continue
+
+            product = Product()
+
+            product.web_url =  SITE + listing.find("a", {"class": "product-item__image-link"})['href']
+            productDIV = listing.find("div",{"class":"product-item"})
+
+            product.scraped_brand = brand
+            product.scraped_product_name = productDIV.find("h4").text
+
+            sale_price_text = productDIV.find("span",{"class":"sale"}).text
+            sale_price = sale_price_text.split("\n")[0]
             
 
+            product.sale_price = float(sale_price.replace("$",""))
+            product.og_price = float(productDIV.find("s",{"class":"t-subdued"}).text.replace("$",""))
+            product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+
+            product.img_url = "https" + productDIV.find("img", {"class":"image__img"})['src']
+
+            product.getGender()
+            product.getMatchedBrand()
+            product.getMatchedProduct()
+            product.generateID(retailer)
+
+            products.append(product)
+
+        retailer.addProducts(products)
+    return retailer

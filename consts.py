@@ -87,6 +87,7 @@ BLACK_DIAMOND = [
     'Aspect',
     'Aspect Pro',
     'Zone',
+    'Zone LV'
     'Focus'
 ]
 
