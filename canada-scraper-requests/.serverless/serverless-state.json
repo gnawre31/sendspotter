@@ -178,7 +178,7 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-requests-prod@sha256:960432d7418aca6fe8cceb5dd1c2b07d4c364466b93810d95fdf1e480beb0a50"
+                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-requests-prod@sha256:45baeef4863c477899bab343372cd83e538cd66a99d4ed5f1f6dfcaa2425dcbd"
               },
               "PackageType": "Image",
               "FunctionName": "sendspotter-can-requests-prod-scrape-requests",
@@ -195,14 +195,14 @@
               "ScrapeDashrequestsLogGroup"
             ]
           },
-          "ScrapeDashrequestsLambdaVersionRo850dk0dl2I4fbXCjdUqjkqrcQZpymJP5UF5WWkGQ": {
+          "ScrapeDashrequestsLambdaVersionBLbpCN2ktyGQ3eOA8PJUTJt1dOCCnCPca1ztL2vjY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ScrapeDashrequestsLambdaFunction"
               },
-              "CodeSha256": "960432d7418aca6fe8cceb5dd1c2b07d4c364466b93810d95fdf1e480beb0a50"
+              "CodeSha256": "45baeef4863c477899bab343372cd83e538cd66a99d4ed5f1f6dfcaa2425dcbd"
             }
           }
         },
@@ -218,7 +218,7 @@
           "ScrapeDashrequestsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ScrapeDashrequestsLambdaVersionRo850dk0dl2I4fbXCjdUqjkqrcQZpymJP5UF5WWkGQ"
+              "Ref": "ScrapeDashrequestsLambdaVersionBLbpCN2ktyGQ3eOA8PJUTJt1dOCCnCPca1ztL2vjY"
             },
             "Export": {
               "Name": "sls-sendspotter-can-requests-prod-ScrapeDashrequestsLambdaFunctionQualifiedArn"
@@ -323,7 +323,7 @@
         "package": {},
         "memory": 3008,
         "vpc": {},
-        "versionLogicalId": "ScrapeDashrequestsLambdaVersionRo850dk0dl2I4fbXCjdUqjkqrcQZpymJP5UF5WWkGQ"
+        "versionLogicalId": "ScrapeDashrequestsLambdaVersionBLbpCN2ktyGQ3eOA8PJUTJt1dOCCnCPca1ztL2vjY"
       }
     },
     "configValidationMode": "warn",
@@ -341,7 +341,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/sendspotter-can-requests/prod/1699402328163-2023-11-08T00:12:08.163Z",
+    "artifactDirectoryName": "serverless/sendspotter-can-requests/prod/1699490439659-2023-11-09T00:40:39.659Z",
     "artifact": ""
   }
 }

@@ -93,6 +93,12 @@ class Product():
             # set to lower case and replace generic words
             self.formatted_product_name = self.scraped_product_name.lower()
             self.formatted_product_name = self.formatted_product_name.replace("climbing","").replace("shoes","").replace("shoe","").replace("rock","").replace("-","")
+
+            # remove color
+            colors = ['blue', 'yellow','orange','purple','charcoal','black','white','green','red','brown','pink','silver']
+            for color in colors:
+                self.formatted_product_name = self.formatted_product_name.replace(color,"")
+
             # check if men, women, or unisex are included in name
             femaleNouns = ['women', 'womens', 'women\'s', 'female', 'wmn']
             maleNouns = ['men', 'mens', 'men\'s', 'male']

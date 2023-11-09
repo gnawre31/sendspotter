@@ -159,7 +159,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-selenium-prod@sha256:354b7423cb40fa15633b6eece5f31ffc474364690c3dc6b0e4443c5775fd030c"
+          "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-selenium-prod@sha256:0dd9bcb82c09e278032f3ff42811d936f48a5949302edb8189c260050dd9c738"
         },
         "PackageType": "Image",
         "FunctionName": "sendspotter-can-selenium-prod-scrape-selenium",
@@ -176,14 +176,14 @@
         "ScrapeDashseleniumLogGroup"
       ]
     },
-    "ScrapeDashseleniumLambdaVersionTi7pwqfohA7U36mGdj5k70QLhrilVjcNDnngmRj8": {
+    "ScrapeDashseleniumLambdaVersionEYPVVrewRixUWTIGax9E8kihOpxSFg6b5lqc27j1YMk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ScrapeDashseleniumLambdaFunction"
         },
-        "CodeSha256": "354b7423cb40fa15633b6eece5f31ffc474364690c3dc6b0e4443c5775fd030c"
+        "CodeSha256": "0dd9bcb82c09e278032f3ff42811d936f48a5949302edb8189c260050dd9c738"
       }
     }
   },
@@ -199,7 +199,7 @@
     "ScrapeDashseleniumLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ScrapeDashseleniumLambdaVersionTi7pwqfohA7U36mGdj5k70QLhrilVjcNDnngmRj8"
+        "Ref": "ScrapeDashseleniumLambdaVersionEYPVVrewRixUWTIGax9E8kihOpxSFg6b5lqc27j1YMk"
       },
       "Export": {
         "Name": "sls-sendspotter-can-selenium-prod-ScrapeDashseleniumLambdaFunctionQualifiedArn"
