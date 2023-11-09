@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import PDP from "./pages/PDP"
 // import Nav from "./components/Nav"
 import ReactGA from 'react-ga';
+import About from "./pages/About"
 
 const App = () => {
   const getAllShoes = useShoeStore(state => state.getAllShoes)
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="*" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/shoe/:id" element={<PDP />} />
+        <Route path="/about" element={<About />} />
 
       </Routes>
     </div>
