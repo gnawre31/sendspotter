@@ -16,7 +16,8 @@ const ProductGrid = () => {
 
 
       {shoes.data && shoes.data.map((shoe, idx) => {
-        if (shoe.brand.includes(searchValue.toLowerCase()) || shoe.product_name.includes(searchValue.toLowerCase()))
+
+        if (shoe.brand.toLowerCase().includes(searchValue.toLowerCase()) || shoe.product_name.toLowerCase().includes(searchValue.toLowerCase()))
           return <ProductCard key={idx} shoe={shoe} />
       })}
     </div>
