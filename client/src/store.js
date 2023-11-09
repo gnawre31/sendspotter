@@ -28,15 +28,37 @@ export const useShoeStore = create((set) => ({
   getAllShoes: async () => {
     set(() => ({ loading: true }));
 
+    const today = new Date().toISOString().slice(0, 10);
+    const jsonString = localStorage.getItem(today);
+
+    let shoes;
+    let logos;
+
+    if (jsonString) {
+      // data exists
+      const parsedData = JSON.parse(jsonString);
+      shoes = parsedData.data.shoes;
+      logos = parsedData.data.logos;
+    } else {
+      // data does not exist
+      // clear local storage
+      // save to local storage
+      localStorage.clear();
+
+      const data = await axios.get(
+        "https://vk3gs5wzz1.execute-api.us-east-1.amazonaws.com/prod/shoes"
+      );
+      shoes = data.data.shoes;
+      logos = data.data.logos;
+
+      const jsonStr = JSON.stringify(data);
+      localStorage.setItem(today, jsonStr);
+    }
+
+    // Check if data is stored in local storage
+
     // API call to get all shoe data
     // let shoes = test;
-
-    const data = await axios.get(
-      "https://vk3gs5wzz1.execute-api.us-east-1.amazonaws.com/prod/shoes"
-    );
-
-    const shoes = data.data.shoes;
-    const logos = data.data.logos;
 
     // at least 1 shoe on discount
     if (shoes.data.length > 0) {
