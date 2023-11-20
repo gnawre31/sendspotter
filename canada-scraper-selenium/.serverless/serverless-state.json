@@ -178,7 +178,7 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-selenium-prod@sha256:b9ed5ad77616ca235de6109df863f94ed7eafebc2ad4e1aeb05d73548aa18b26"
+                "ImageUri": "470953747550.dkr.ecr.us-east-1.amazonaws.com/serverless-sendspotter-can-selenium-prod@sha256:06f9d5fe40da2ee9ea60c6d329db5e9fed6bbe4ffd1e427c078cc53cbc150a4b"
               },
               "PackageType": "Image",
               "FunctionName": "sendspotter-can-selenium-prod-scrape-selenium",
@@ -195,14 +195,14 @@
               "ScrapeDashseleniumLogGroup"
             ]
           },
-          "ScrapeDashseleniumLambdaVersionfAVpyYszkFTp9t1caGiSuQFCi8LHOHL1FUwz2Nby5CI": {
+          "ScrapeDashseleniumLambdaVersion33jbgUmDkJmAOFXPtNFgxfhhw99Kxnay8leqaX9nE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ScrapeDashseleniumLambdaFunction"
               },
-              "CodeSha256": "b9ed5ad77616ca235de6109df863f94ed7eafebc2ad4e1aeb05d73548aa18b26"
+              "CodeSha256": "06f9d5fe40da2ee9ea60c6d329db5e9fed6bbe4ffd1e427c078cc53cbc150a4b"
             }
           }
         },
@@ -218,7 +218,7 @@
           "ScrapeDashseleniumLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ScrapeDashseleniumLambdaVersionfAVpyYszkFTp9t1caGiSuQFCi8LHOHL1FUwz2Nby5CI"
+              "Ref": "ScrapeDashseleniumLambdaVersion33jbgUmDkJmAOFXPtNFgxfhhw99Kxnay8leqaX9nE"
             },
             "Export": {
               "Name": "sls-sendspotter-can-selenium-prod-ScrapeDashseleniumLambdaFunctionQualifiedArn"
@@ -323,7 +323,7 @@
         "package": {},
         "memory": 3008,
         "vpc": {},
-        "versionLogicalId": "ScrapeDashseleniumLambdaVersionfAVpyYszkFTp9t1caGiSuQFCi8LHOHL1FUwz2Nby5CI"
+        "versionLogicalId": "ScrapeDashseleniumLambdaVersion33jbgUmDkJmAOFXPtNFgxfhhw99Kxnay8leqaX9nE"
       }
     },
     "configValidationMode": "warn",
@@ -341,7 +341,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/sendspotter-can-selenium/prod/1699539774029-2023-11-09T14:22:54.029Z",
+    "artifactDirectoryName": "serverless/sendspotter-can-selenium/prod/1700237847153-2023-11-17T16:17:27.153Z",
     "artifact": ""
   }
 }

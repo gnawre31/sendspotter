@@ -23,9 +23,10 @@ BRANDS = [
     'Five Ten',
     'Mad Rock',
     'Ocun',
-    'Red Chili'
-    'tenaya',
-    'Unparallel'
+    'Red Chili',
+    'Tenaya',
+    'Unparallel',
+    'SoiLL'
 ]
 
 
@@ -89,7 +90,8 @@ LA_SPORTIVA = [
     'Genius',
     'Testarossa',
     'Mega Ice Evo',
-    'Python'
+    'Python',
+    'Stickit'
 ]
 
 BLACK_DIAMOND = [
@@ -115,7 +117,7 @@ BOREAL = [
     'Crux',
     'Ninja',
     'Diabolo',
-    'Diabola'
+    'Diabola',
     'Mutant',
     'Beta Eco',
     'Beta',
@@ -124,7 +126,8 @@ BOREAL = [
     'Joker Lace',
     'Joker Plus',
     'Alpha',
-    'Silex'
+    'Silex',
+    'Ballet'
 ]
 
 BUTORA = [
@@ -182,7 +185,7 @@ FIVE_TEN = [
     'Asym',
     'Anasazi',
     'Anasazi VCS',
-    'Grandstone',
+    'Grandstone'
 ]
 
 MAD_ROCK = [
@@ -200,7 +203,7 @@ MAD_ROCK = [
     'Haywire',
     'Lotus',
     'Redline Lace',
-    'Redline Strap'
+    'Redline Strap',
     'Weaver',
     'Remora',
     'Remora LV',
@@ -310,6 +313,21 @@ UNPARALLEL = [
     'Hold Up VCS'
 ]
 
+SOILL = [
+    'The Onset',
+    'New Zero',
+    'Free Range LV',
+    'Street LV',
+    'The Street',
+    'Momoa Pro',
+    'Momoa Pro LV',
+    'Free Range Pro',
+    'Street',
+    'Stay',
+    'Catch',
+    'The Runner LV',
+    'The Runner'
+]
 
 brandConstDict = {
     'Scarpa': SCARPA,
@@ -324,6 +342,7 @@ brandConstDict = {
     'Red Chili':RED_CHILI,
     'Tenaya':TENAYA,
     'Unparallel':UNPARALLEL,
+    'SoiLL': SOILL
 }
 
 
@@ -427,11 +446,28 @@ class SheetsAPI():
 def handler(event=None, context=None):
 
     try:
-        climbOn = scrapeClimbOn()
-        climbOn.saveToSheets()
+        try:
+            climbOn = scrapeClimbOn()
+            climbOn.saveToSheets()
+        except:
+            print("failed to scrape climb on")
 
-        madRock = scrapeMadRock()
-        madRock.saveToSheets()
+        try:
+            madRock = scrapeMadRock()
+            madRock.saveToSheets()
+        except:
+            print("failed to scrape mad rock")
+        
+        try:
+            climbSmart = scrapeClimbSmart()
+            climbSmart.saveToSheets()
+        except:
+            print("failed to scrape climb smart")
+        try:
+            momoSports = scrapeMomoSports()
+            momoSports.saveToSheets()
+        except:
+            print("failed to scrape momo sports")
 
         return "success"
     except:
@@ -573,7 +609,7 @@ class Product():
         best_match_ratio = -1
         best_match_str = None
         for s in listOfStrs:
-            fuzz_ratio = fuzz.ratio(str.lower(), s)
+            fuzz_ratio = fuzz.ratio(str.lower(), s.lower())
             if fuzz_ratio > best_match_ratio:
                 best_match_ratio = fuzz_ratio
                 best_match_str = s
@@ -741,6 +777,106 @@ def scrapeMadRock():
             products.append(product)
         retailer.addProducts(products)
         currPage += 1
+
+    return retailer
+
+def scrapeClimbSmart():
+
+    """
+    Crawls through all pages, extracting details for products on sale 
+
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    retailer = Retailer(retailer="Climb Smart Shop", country="Canada", currency="CAD")
+
+    LINK = "https://climbsmartshop.com/collections/clearance-shoes"
+    SITE = "https://climbsmartshop.com"
+        
+    url = LINK
+    response = requests.get(url) 
+    soup = BeautifulSoup(response.text, "html.parser")
+    
+    retailer.addProducts(products)
+    products = []
+    listings = soup.find_all("a", {"class": "product-card"})
+    for listing in listings:
+
+        product = Product()
+
+        product.web_url = SITE + listing['href']
+        product.scraped_product_name = listing.find("div", {"class": "product-card__name"}).text
+        product.scraped_brand = listing.find("div", {"class": "product-card__brand"}).text
+
+        # skip if random item or if approach shoe
+        if product.scraped_brand not in BRANDS or "approach" in product.scraped_product_name.lower():
+            continue
+
+
+        priceDIV = listing.find("div", {"class": "product-card__price"})
+
+        product.og_price = float(priceDIV.find("s",{"class":"product-card__regular-price"}).text.replace("$","").replace(" CAD", ""))
+        product.sale_price = float(priceDIV.text.split("\n")[4].strip().replace("$","").replace("\n","").replace("from ",""))
+        product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+        imgDiv = listing.find("div", {"class":"product-card__image-container"})
+        product.img_url = "https:"+imgDiv.find("img")['data-src'].replace("width","720").replace("{","").replace("}","")
+
+        product.getGender()
+        product.getMatchedBrand()
+        product.getMatchedProduct()
+        product.generateID(retailer)
+
+        products.append(product)
+
+    return retailer
+
+def scrapeMomoSports():
+
+    """
+    Crawls through all pages, extracting details for products on sale 
+
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    retailer = Retailer(retailer="Momo Sports", country="Canada", currency="CAD")
+
+    LINK = "https://momosports.ca/en/sports-et-activites/escalade/chaussons-d-escalade?am_on_sale=1&product_list_limit=36"
+    SITE = "https://momosports.ca"
+
+
+    url = LINK
+    response = requests.get(url) 
+    soup = BeautifulSoup(response.text, "html.parser")
+    products = []
+    listingsDIV = soup.find("ol",{"class":"products"})
+    listings = listingsDIV.find_all("li", {"class": "product-item"})
+    for listing in listings:
+
+        product = Product()
+
+        product.web_url = listing.find("a",{"class":"product-item-photo"})['href']
+        product.scraped_product_name = listing.find("a", {"class": "product-item-link"}).text.strip()
+        product.scraped_brand = listing.find("div", {"class": "product-brand"}).text.strip()
+
+        priceDIV = listing.find_all("span", {"class": "price"})
+
+        product.og_price = float(priceDIV[1].text.replace("$",""))
+        product.sale_price = float(priceDIV[0].text.replace("$",""))
+        product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+        product.img_url = listing.find("img", {"class":"product-image-photo"})['src']
+
+        product.getGender()
+        product.getMatchedBrand()
+        product.getMatchedProduct()
+        product.generateID(retailer)
+
+        products.append(product)
+    retailer.addProducts(products)
+
 
     return retailer
 

@@ -149,7 +149,7 @@ class Product():
         best_match_ratio = -1
         best_match_str = None
         for s in listOfStrs:
-            fuzz_ratio = fuzz.ratio(str.lower(), s)
+            fuzz_ratio = fuzz.ratio(str.lower(), s.lower())
             if fuzz_ratio > best_match_ratio:
                 best_match_ratio = fuzz_ratio
                 best_match_str = s
