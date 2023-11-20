@@ -8,9 +8,10 @@ BRANDS = [
     'Five Ten',
     'Mad Rock',
     'Ocun',
-    'Red Chili'
+    'Red Chili',
     'Tenaya',
-    'Unparallel'
+    'Unparallel',
+    'SoiLL'
 ]
 
 
@@ -46,7 +47,7 @@ SCARPA = [
     'Generator Mid',
     'Generator',
     'Quantix SF',
-    'Quantic',
+    'Quantic'
 ]
 LA_SPORTIVA = [
     'Miura VS',
@@ -74,7 +75,8 @@ LA_SPORTIVA = [
     'Genius',
     'Testarossa',
     'Mega Ice Evo',
-    'Python'
+    'Python',
+    'Stickit'
 ]
 
 BLACK_DIAMOND = [
@@ -87,8 +89,9 @@ BLACK_DIAMOND = [
     'Aspect',
     'Aspect Pro',
     'Zone',
-    'Zone LV'
-    'Focus'
+    'Zone LV',
+    'Focus',
+    'Session'
 ]
 
 BOREAL = [
@@ -99,7 +102,7 @@ BOREAL = [
     'Crux',
     'Ninja',
     'Diabolo',
-    'Diabola'
+    'Diabola',
     'Mutant',
     'Beta Eco',
     'Beta',
@@ -108,7 +111,8 @@ BOREAL = [
     'Joker Lace',
     'Joker Plus',
     'Alpha',
-    'Silex'
+    'Silex',
+    'Ballet'
 ]
 
 BUTORA = [
@@ -166,7 +170,7 @@ FIVE_TEN = [
     'Asym',
     'Anasazi',
     'Anasazi VCS',
-    'Grandstone',
+    'Grandstone'
 ]
 
 MAD_ROCK = [
@@ -184,7 +188,7 @@ MAD_ROCK = [
     'Haywire',
     'Lotus',
     'Redline Lace',
-    'Redline Strap'
+    'Redline Strap',
     'Weaver',
     'Remora',
     'Remora LV',
@@ -294,18 +298,34 @@ UNPARALLEL = [
     'Hold Up VCS'
 ]
 
+SOILL = [
+    'The Onset',
+    'New Zero',
+    'Free Range LV',
+    'Street LV',
+    'The Street',
+    'Momoa Pro',
+    'Momoa Pro LV',
+    'Free Range Pro',
+    'Street',
+    'Stay',
+    'Catch',
+    'The Runner LV',
+    'The Runner'
+]
 
 brandConstDict = {
-    'scarpa': SCARPA,
-    'la sportiva': LA_SPORTIVA,
-    'black diamond':BLACK_DIAMOND,
-    'boreal':BOREAL,
-    'butora':BUTORA,
-    'evolv':EVOLV,
-    'five ten':FIVE_TEN,
-    'mad rock':MAD_ROCK,
-    'ocun':OCUN,
-    'red chili':RED_CHILI,
-    'tenaya':TENAYA,
-    'unparallel':UNPARALLEL,
+    'Scarpa': SCARPA,
+    'La Sportiva': LA_SPORTIVA,
+    'Black Diamond':BLACK_DIAMOND,
+    'Boreal':BOREAL,
+    'Butora':BUTORA,
+    'Evolv':EVOLV,
+    'Five Ten':FIVE_TEN,
+    'Mad Rock':MAD_ROCK,
+    'Ocun':OCUN,
+    'Red Chili':RED_CHILI,
+    'Tenaya':TENAYA,
+    'Unparallel':UNPARALLEL,
+    'SoiLL': SOILL
 }

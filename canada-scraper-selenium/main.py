@@ -26,9 +26,10 @@ BRANDS = [
     'Five Ten',
     'Mad Rock',
     'Ocun',
-    'Red Chili'
+    'Red Chili',
     'Tenaya',
-    'Unparallel'
+    'Unparallel',
+    'SoiLL'
 ]
 
 
@@ -92,7 +93,8 @@ LA_SPORTIVA = [
     'Genius',
     'Testarossa',
     'Mega Ice Evo',
-    'Python'
+    'Python',
+    'Stickit'
 ]
 
 BLACK_DIAMOND = [
@@ -118,7 +120,7 @@ BOREAL = [
     'Crux',
     'Ninja',
     'Diabolo',
-    'Diabola'
+    'Diabola',
     'Mutant',
     'Beta Eco',
     'Beta',
@@ -127,7 +129,8 @@ BOREAL = [
     'Joker Lace',
     'Joker Plus',
     'Alpha',
-    'Silex'
+    'Silex',
+    'Ballet'
 ]
 
 BUTORA = [
@@ -203,7 +206,7 @@ MAD_ROCK = [
     'Haywire',
     'Lotus',
     'Redline Lace',
-    'Redline Strap'
+    'Redline Strap',
     'Weaver',
     'Remora',
     'Remora LV',
@@ -313,6 +316,21 @@ UNPARALLEL = [
     'Hold Up VCS'
 ]
 
+SOILL = [
+    'The Onset',
+    'New Zero',
+    'Free Range LV',
+    'Street LV',
+    'The Street',
+    'Momoa Pro',
+    'Momoa Pro LV',
+    'Free Range Pro',
+    'Street',
+    'Stay',
+    'Catch',
+    'The Runner LV',
+    'The Runner'
+]
 
 brandConstDict = {
     'Scarpa': SCARPA,
@@ -327,6 +345,7 @@ brandConstDict = {
     'Red Chili':RED_CHILI,
     'Tenaya':TENAYA,
     'Unparallel':UNPARALLEL,
+    'SoiLL': SOILL
 }
 
 
@@ -474,8 +493,9 @@ def handler(event=None, context=None):
             mec = scrapeMEC(chrome)
             mec.saveToSheets()
 
-        except:
+        except Exception as e:
             print("500 - failed to scrape MEC")   
+            print(e)
             raise
 
         try:
@@ -483,6 +503,12 @@ def handler(event=None, context=None):
             blocShop.saveToSheets()
         except:
             print("500 - failed to scrape MEC")   
+            raise
+        try:
+            monodSports = scrapeMonodSports(chrome)
+            monodSports.saveToSheets()
+        except:
+            print("500 - failed to scrape monod sports")   
             raise
 
         return "200 - sail, vpo, mec, blocshop, last hunt, altitude"
@@ -628,7 +654,7 @@ class Product():
         best_match_ratio = -1
         best_match_str = None
         for s in listOfStrs:
-            fuzz_ratio = fuzz.ratio(str.lower(), s)
+            fuzz_ratio = fuzz.ratio(str.lower(), s.lower())
             if fuzz_ratio > best_match_ratio:
                 best_match_ratio = fuzz_ratio
                 best_match_str = s
@@ -668,7 +694,7 @@ def getBrandLenFromStr(product_title):
     product_title = product_title.lower()
     matched = ""
     for b in BRANDS:
-        if b.lower() in product_title.lower():
+        if b.lower() in product_title:
             matched = b
             break
 
@@ -843,45 +869,67 @@ def scrapeVPO(chrome):
 def scrapeMEC(chrome):
     retailer = Retailer(retailer="MEC", country="Canada", currency="CAD")
 
-    LINK = "https://www.mec.ca/en/products/climbing/climbing-footwear/rock-climbing-shoes/c/1190?filters%5Bcustom_fields.badge%5D%5B0%5D=clearance"
+    LINK = "https://www.mec.ca/en/products/climbing/climbing-footwear/rock-climbing-shoes/c/1190"
     SITE = "https://www.mec.ca"
 
-    chrome.get(LINK)
-    time.sleep(10)
-    soup = BeautifulSoup(chrome.page_source, "html.parser")
-    products = []
 
-    listings = soup.find_all("div", {"class": "findify-components--cards--product"})
-
-    for listing in listings:
-
-        product = Product()
-
-        product.web_url = SITE + listing.find("a", {"class": "findify-components--cards--product__rating"})["href"]
-        product_title = listing.find("h3",{"class":"findify-components--cards--product__title"}).text
-
-        brandLen = getBrandLenFromStr(product_title)
-        product.scraped_product_name = product_title[brandLen:].strip()
-        product.scraped_brand = product_title[0:brandLen]
+    currPage = 1
+    lastPage = 1
+    while currPage <= lastPage:
 
 
-        product.og_price = float(listing.find("span",{"class":"findify-components--cards--product--price__compare"}).text.replace("$","").replace(" CAD", ""))
-        product.sale_price = float(listing.find("span",{"class":"findify-components--cards--product--price__sale-price"}).text.replace("$","").replace("\n","").replace("from ",""))
-        product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+        
 
-        imgDiv = listing.find("div", {"class":"findify-components-common--image"})
-        product.img_url = imgDiv.find("img")['src']
+        url = f'{LINK}?offset={(currPage-1)*32}'
+
+        chrome.get(url)
+        time.sleep(10)
+        soup = BeautifulSoup(chrome.page_source, "html.parser")
+        products = []
+
+        if currPage == 1:
+            pageDiv = soup.find("div",{"class":"findify-components--pagination"})
+            pages = soup.find_all("a",{"class":"findify-components--pagination__page"})
+            lastPage = len(pages)
+
+        listings = soup.find_all("div", {"class": "findify-components--cards--product"})
+
+        for listing in listings:
+
+            isOnClearance = listing.find("div",{"class":"findify-product-sticker-clearance"})
+            isOnSale = listing.find("div",{"class":"findify-product-sticker-sale"})
+
+            if isOnClearance is None and isOnSale is None:
+                continue
+
+            product = Product()
+
+            product.web_url = SITE + listing.find("a", {"class": "findify-components--cards--product__rating"})["href"]
+            product_title = listing.find("h3",{"class":"findify-components--cards--product__title"}).text
+
+            brandLen = getBrandLenFromStr(product_title)
+            product.scraped_product_name = product_title[brandLen:].strip()
+            product.scraped_brand = product_title[0:brandLen]
+
+
+            product.og_price = float(listing.find("span",{"class":"findify-components--cards--product--price__compare"}).text.replace("$","").replace(" CAD", ""))
+            product.sale_price = float(listing.find("span",{"class":"findify-components--cards--product--price__sale-price"}).text.replace("$","").replace("\n","").replace("from ",""))
+            product.discount_pct = round((product.og_price - product.sale_price) / product.og_price * 100)
+
+            imgDiv = listing.find("div", {"class":"findify-components-common--image"})
+            product.img_url = imgDiv.find("img")['src']
 
 
 
-        product.getGender()
-        product.getMatchedBrand()
-        product.getMatchedProduct()
-        product.generateID(retailer)
+            product.getGender()
+            product.getMatchedBrand()
+            product.getMatchedProduct()
+            product.generateID(retailer)
 
-        products.append(product)
-
-    retailer.addProducts(products)
+            products.append(product)
+        retailer.addProducts(products)
+        retailer.printList()
+        currPage += 1
     return retailer
      
 def scrapeBlocShop(chrome):
@@ -954,3 +1002,55 @@ def scrapeBlocShop(chrome):
 
         retailer.addProducts(products)
     return retailer
+
+def scrapeMonodSports(chrome):
+
+    """
+    Crawls through all pages, extracting details for products on sale 
+
+    :return: res: product details for all products on sale 
+    :returnType: List
+    """
+
+    retailer = Retailer(retailer="Monod Sports", country="Canada", currency="CAD")
+
+    LINK = "https://www.monodsports.com/collections/rock-shoes?sort_by=best-selling&filter.p.m.custom.on_sale=Yes"
+    SITE = "https://www.monodsports.com"
+    chrome.get(LINK)
+    time.sleep(5)
+    soup = BeautifulSoup(chrome.page_source, "html.parser")
+    products = []
+    listings = soup.find_all("div", {"class": "product-grid-item"})
+
+    # all products are discounted on this page
+
+    for listing in listings:
+
+        product = Product()
+
+        product.web_url =  SITE + listing.find("a", {"class": "product__media__holder"})['href']
+
+        product_title = listing.find("a",{"class":"product-grid-item__title"}).text
+        brandLen = getBrandLenFromStr(product_title)
+        product.scraped_product_name = product_title[brandLen:].strip().replace("(Past Season)","")
+        product.scraped_brand = product_title[0:brandLen]
+
+        priceDIV = listing.find("a",{"class":"product-grid-item__price"})
+        
+        product.sale_price = float(priceDIV.find("span",{"class":"product-grid-item__price__new"}).text.replace("$",""))
+        product.og_price = float(priceDIV.find("s").text.replace("$",""))
+        product.discount_pct = round((product.og_price - product.sale_price ) / product.og_price * 100)
+
+        product.img_url = "https:" + listing.find("picture").find("source")['data-srcset'].split(', ')[-1].split(" ")[0]
+
+        product.getGender()
+        product.getMatchedBrand()
+        product.getMatchedProduct()
+        product.generateID(retailer)
+
+        products.append(product)
+    retailer.addProducts(products)
+    return retailer
+
+
+

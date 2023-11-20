@@ -28,7 +28,7 @@ def scrapeMEC():
 
     retailer = Retailer(retailer="MEC", country="Canada", currency="CAD")
 
-    LINK = "https://www.mec.ca/en/products/climbing/climbing-footwear/rock-climbing-shoes/c/1190?filters%5Bcustom_fields.badge%5D%5B0%5D=clearance"
+    LINK = "https://www.mec.ca/en/products/climbing/climbing-footwear/rock-climbing-shoes/c/1190"
     SITE = "https://www.mec.ca"
 
     service = Service()
@@ -36,18 +36,30 @@ def scrapeMEC():
     options.add_argument('--headless')
     driver = webdriver.Chrome(service=service, options=options)
 
-    driver.get(LINK)
-    time.sleep(5)
-    soup = BeautifulSoup(driver.page_source, "html.parser")
-    products = scrapeCurrPage(soup, SITE, retailer)
-    retailer.addProducts(products)
+    currPage = 1
+    lastPage = 1
+    while currPage <= lastPage:
+        
+        url = f'{LINK}?offset={(currPage-1)*32}'
+        driver.get(url)
+        time.sleep(5)
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+        products = scrapeCurrPage(soup, SITE, retailer)
+        retailer.addProducts(products)
+
+        if currPage == 1:
+            pageDiv = soup.find("div",{"class":"findify-components--pagination"})
+            pages = soup.find_all("a",{"class":"findify-components--pagination__page"})
+            lastPage = len(pages)
+        currPage += 1
+        
     return retailer
 
 def getBrandLenFromStr(product_title):
     product_title = product_title.lower()
     matched = ""
     for b in BRANDS:
-        if b in product_title:
+        if b.lower() in product_title:
             matched = b
             break
 
@@ -70,6 +82,12 @@ def scrapeCurrPage(soup, SITE, retailer):
     listings = soup.find_all("div", {"class": "findify-components--cards--product"})
 
     for listing in listings:
+
+        isOnClearance = listing.find("div",{"class":"findify-product-sticker-clearance"})
+        isOnSale = listing.find("div",{"class":"findify-product-sticker-sale"})
+
+        if isOnClearance is None and isOnSale is None:
+            continue
 
         product = Product()
 
@@ -103,7 +121,7 @@ def scrapeCurrPage(soup, SITE, retailer):
 
 if __name__ == "__main__":
     res = scrapeMEC()
-
+    # res.printList()
     res.saveToSheets()
 
 
